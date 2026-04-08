@@ -82,11 +82,15 @@ export default function SecundarianCollections() {
             </Typography>
             <Typography
               variant="h2"
-              sx={{ fontSize: { xs: "2.25rem", md: "3rem" } }}
+              sx={{ fontSize: { xs: "2.25rem", md: "3rem" }, textTransform: "uppercase" }}
             >
-              Engineered for
-              <br />
-              every demand
+              Premium Workwear
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{ color: "text.secondary", mt: 1 }}
+            >
+              Engineered for every demand
             </Typography>
           </Box>
           <Button
