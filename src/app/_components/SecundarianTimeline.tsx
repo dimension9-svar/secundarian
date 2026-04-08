@@ -239,8 +239,9 @@ export default function SecundarianTimeline() {
               mx: "auto",
             }}
           >
-            From a single workshop to a global standard in premium workwear.
-            Every milestone shaped by the hands that wear our garments.
+            Secundarian began with a straightforward question: why does
+            serious workwear so often force a choice between durability,
+            comfort, and appearance?
           </Typography>
         </Box>
 
