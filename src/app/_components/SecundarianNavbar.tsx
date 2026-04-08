@@ -57,23 +57,13 @@ export default function SecundarianNavbar() {
               }}
             >
               <Image
-                src="/secundarian-logo.svg"
+                src="/secundarian-long-logo.svg"
                 alt="Secundarian"
-                width={28}
-                height={38}
+                width={180}
+                height={30}
                 priority
+                style={{ objectFit: "contain", objectPosition: "left" }}
               />
-              <Typography
-                sx={{
-                  fontFamily: '"Playfair Display", Georgia, serif',
-                  fontSize: "1.35rem",
-                  fontWeight: 400,
-                  letterSpacing: "0.08em",
-                  color: "#1A1A1A",
-                }}
-              >
-                SECUNDARIAN
-              </Typography>
             </Box>
 
             <Box
