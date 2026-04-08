@@ -82,12 +82,12 @@ export default function SecundarianHero() {
                 color: "text.primary",
               }}
             >
-              Built to
-              <br />
+              Built for the{" "}
               <Box component="span" sx={{ color: "secondary.main" }}>
-                Outlast
-              </Box>{" "}
-              the Day
+                shift.
+              </Box>
+              <br />
+              Worn beyond it.
             </MotionTypography>
 
             <MotionTypography
