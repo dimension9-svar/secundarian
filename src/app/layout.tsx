@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
-import { Playfair_Display, DM_Sans } from "next/font/google";
+import { Playfair_Display, DM_Sans, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import SecundarianThemeProvider from "./_components/SecundarianThemeProvider";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const bebasNeue = Bebas_Neue({
+  variable: "--font-bebas",
+  weight: "400",
   subsets: ["latin"],
   display: "swap",
 });
@@ -36,7 +43,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${dmSans.variable} antialiased`}
+      className={`${playfair.variable} ${dmSans.variable} ${bebasNeue.variable} antialiased`}
     >
       <body style={{ margin: 0 }}>
         <SecundarianThemeProvider>{children}</SecundarianThemeProvider>
