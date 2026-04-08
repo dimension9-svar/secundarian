@@ -59,9 +59,8 @@ export default function SecundarianCTA() {
               mb: 5,
             }}
           >
-            Early access to new collections, behind-the-scenes from our
-            material labs, and stories from the people who wear Secundarian
-            every day.
+            Early access to new collections, and stories from the people
+            who wear Secundarian every day.
           </Typography>
 
           <Box

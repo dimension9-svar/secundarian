@@ -6,6 +6,7 @@ import SecundarianCollections from "./_components/SecundarianCollections";
 import SecundarianTimeline from "./_components/SecundarianTimeline";
 import SecundarianValues from "./_components/SecundarianValues";
 import SecundarianCTA from "./_components/SecundarianCTA";
+import SecundarianInstagram from "./_components/SecundarianInstagram";
 import SecundarianFooter from "./_components/SecundarianFooter";
 
 export default function SecundarianLandingPage() {
@@ -18,6 +19,7 @@ export default function SecundarianLandingPage() {
       <SecundarianTimeline />
       <SecundarianValues />
       <SecundarianCTA />
+      <SecundarianInstagram />
       <SecundarianFooter />
     </Box>
   );
