@@ -77,13 +77,9 @@ export default function SecundarianHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               sx={{
-                fontFamily: 'var(--font-bebas), "Bebas Neue", "Impact", sans-serif',
                 fontSize: { xs: "3.5rem", sm: "4.5rem", md: "5.5rem", lg: "6.5rem" },
                 mb: 3,
                 color: "text.primary",
-                textTransform: "uppercase",
-                letterSpacing: "0.03em",
-                lineHeight: 0.95,
               }}
             >
               Built for the{" "}
