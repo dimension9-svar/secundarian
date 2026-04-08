@@ -21,52 +21,39 @@ const MotionBox = motion.create(Box);
 
 const milestones = [
   {
-    year: "2019",
+    year: "2021",
     title: "The Beginning",
     subtitle: "Cape Town, South Africa",
     description:
       "Founded in a converted dockyard workshop with three industrial sewing machines and a conviction that workwear deserved better. First prototypes tested by steelworkers and marine engineers.",
-    icon: "🔨",
   },
   {
-    year: "2020",
+    year: "2021",
     title: "Foundation Collection",
     subtitle: "First Production Run",
     description:
       "Launched the Foundation line — 8 core pieces engineered from triple-stitched 12oz canvas and Cordura-reinforced stress points. Sold out in 6 weeks through word of mouth alone.",
-    icon: "🧵",
-  },
-  {
-    year: "2021",
-    title: "The Forge Partnership",
-    subtitle: "Heritage Manufacturing",
-    description:
-      "Partnered with fourth-generation textile mills in Portugal and Japan. Introduced flame-resistant fabrics for heavy industry without sacrificing breathability or fit.",
-    icon: "🔥",
-  },
-  {
-    year: "2022",
-    title: "Global Reach",
-    subtitle: "12 Countries, 47 Partners",
-    description:
-      "Expanded distribution across Europe, Australasia, and the Americas. Opened the Secundarian Material Lab to develop proprietary performance blends.",
-    icon: "🌍",
-  },
-  {
-    year: "2023",
-    title: "Sustainability Pledge",
-    subtitle: "Circular by Design",
-    description:
-      "Committed to 100% ethical sourcing with full supply chain transparency. Launched the Garment Return Program — worn Secundarian pieces are repaired, recycled, or repurposed. Zero landfill.",
-    icon: "♻️",
   },
   {
     year: "2025",
-    title: "Meridian & Sable",
-    subtitle: "Beyond the Worksite",
+    title: "Rebrand",
+    subtitle: "A New Identity",
     description:
-      "Introduced technical outerwear and transitional evening lines. The same engineering DNA, refined for every hour of the day. Opened flagship ateliers in London and Tokyo.",
-    icon: "✦",
+      "Refined the Secundarian identity to match the ambition of the brand. New visual language, evolved positioning, and a sharper focus on the intersection of industrial performance and modern design.",
+  },
+  {
+    year: "2026",
+    title: "Re-Launch",
+    subtitle: "The Next Chapter",
+    description:
+      "Secundarian re-emerges with an expanded product architecture, new manufacturing partners, and a direct-to-consumer model built for scale. The same uncompromising standards, now fully realised.",
+  },
+  {
+    year: "2026",
+    title: "Beyond the Worksite",
+    subtitle: "From Workshop to World",
+    description:
+      "Introduced technical outerwear and transitional evening lines. The same engineering DNA, refined for every hour of the day. Workwear that moves seamlessly from site to street.",
   },
 ];
 
@@ -268,7 +255,7 @@ export default function SecundarianTimeline() {
         >
           {milestones.map((milestone, i) => (
             <TimelineMilestone
-              key={milestone.year}
+              key={milestone.title}
               milestone={milestone}
               index={i}
               isActive={activeIndex === i}
