@@ -23,7 +23,7 @@ const milestones = [
   {
     year: "2021",
     title: "The Beginning",
-    subtitle: "Cape Town, South Africa",
+    subtitle: "Secunda, South Africa",
     description:
       "Founded in a converted dockyard workshop with three industrial sewing machines and a conviction that workwear deserved better. First prototypes tested by steelworkers and marine engineers.",
   },
