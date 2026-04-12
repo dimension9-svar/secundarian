@@ -9,27 +9,27 @@ const MotionBox = motion.create(Box);
 const feedItems = [
   {
     gradient: "linear-gradient(135deg, #2C2C2C 0%, #1A1A1A 100%)",
-    label: "Foundation jacket — field tested, 72 hours straight",
+    label: "The OG tees — 4 colours, 4 sizes, one dream",
   },
   {
     gradient: "linear-gradient(135deg, #3D3228 0%, #1E1612 100%)",
-    label: "Forge line — heat-rated to 400°C",
+    label: "Bucket hats that started a movement",
   },
   {
     gradient: "linear-gradient(135deg, #2A2520 0%, #0D0D0D 100%)",
-    label: "Material Lab — 14-point fabric evaluation",
+    label: "Behind the scenes — new logo, cooling tower inspired",
   },
   {
     gradient: "linear-gradient(135deg, #1E1E1E 0%, #2C2C2C 100%)",
-    label: "Workshop floor — triple-stitch in progress",
+    label: "Trucker caps — sold like hot cakes, no exaggeration",
   },
   {
     gradient: "linear-gradient(165deg, #2C2824 0%, #1A1612 100%)",
-    label: "Meridian outerwear — dawn test, Cape Town harbour",
+    label: "Mpumalanga roots — petrochemical skylines and hometown pride",
   },
   {
     gradient: "linear-gradient(135deg, #1A1A1A 0%, #3D3D3D 100%)",
-    label: "Sable evening line — site to street",
+    label: "Fashion meets workwear — the new chapter begins",
   },
 ];
 
@@ -67,7 +67,7 @@ export default function SecundarianInstagram() {
               variant="h3"
               sx={{ fontSize: { xs: "1.5rem", md: "2rem" } }}
             >
-              Follow the Process
+              Follow the Journey
             </Typography>
           </Box>
           <IconButton

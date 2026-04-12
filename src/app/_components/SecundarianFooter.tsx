@@ -11,8 +11,8 @@ import {
 import Image from "next/image";
 
 const footerLinks = {
-  Collections: ["Foundation", "Forge", "Meridian", "Sable"],
-  Company: ["Our Story", "Sustainability", "Material Lab", "Careers"],
+  Collections: ["Streetwear", "Cold Season", "Trucker Caps", "Workwear"],
+  Company: ["Our Story", "The Pivot", "Mpumalanga Roots", "Careers"],
   Support: ["Size Guide", "Care Instructions", "Returns", "Contact"],
   Legal: ["Privacy Policy", "Terms of Service", "Cookie Policy"],
 };
@@ -66,8 +66,8 @@ export default function SecundarianFooter() {
                 mb: 3,
               }}
             >
-              Premium workwear engineered for those who build, forge, and create.
-              Every garment is a testament to the hands that wear it.
+              Born in Secunda, Mpumalanga. Fashion meets workwear — rooted in
+              hometown pride, built for everywhere.
             </Typography>
             <Box sx={{ display: "flex", gap: 1 }}>
               {["IG", "LI", "TW"].map((social) => (
@@ -154,7 +154,7 @@ export default function SecundarianFooter() {
             variant="body2"
             sx={{ color: "rgba(255,255,255,0.25)", fontSize: "0.75rem" }}
           >
-            Engineered with integrity. Built without compromise.
+            From Secunda to the world. Fashion meets workwear.
           </Typography>
         </Box>
       </Container>

@@ -22,38 +22,31 @@ const MotionBox = motion.create(Box);
 const milestones = [
   {
     year: "2021",
-    title: "The Beginning",
-    subtitle: "Secunda, South Africa",
+    title: "Wayne Stuart from Secunda",
+    subtitle: "The Comedy Circuit Meets Clothing",
     description:
-      "Founded in a converted dockyard workshop with three industrial sewing machines and a conviction that workwear deserved better. First prototypes tested by steelworkers and marine engineers.",
+      "While travelling the country performing at comedy shows — where every MC introduced him as 'Wayne Stuart from Secunda' — the dream of a clothing brand took shape. That hometown identity became the name, and Secundarian launched with T-shirts in four colours.",
   },
   {
-    year: "2021",
-    title: "Foundation Collection",
-    subtitle: "First Production Run",
+    year: "2023",
+    title: "The Range Grows",
+    subtitle: "Bucket Hats to Trucker Caps",
     description:
-      "Launched the Foundation line — 8 core pieces engineered from triple-stitched 12oz canvas and Cordura-reinforced stress points. Sold out in 6 weeks through word of mouth alone.",
+      "Demand outpaced expectation. Bucket hats dropped next, followed by hoodies and sweaters for the colder months. Then came trucker caps — and they sold like hot cakes. The brand had found its rhythm.",
   },
   {
     year: "2025",
-    title: "Rebrand",
-    subtitle: "A New Identity",
+    title: "The Cape Town Pivot",
+    subtitle: "A Conversation That Changed Everything",
     description:
-      "Refined the Secundarian identity to match the ambition of the brand. New visual language, evolved positioning, and a sharper focus on the intersection of industrial performance and modern design.",
+      "Over drinks in the Mother City, friends were discussing complaints about clothing brands. One suggestion changed the trajectory: 'Why don't you take Secundarian into the workwear space? But think fashion meets workwear, not PPE.' And that was the moment.",
   },
   {
     year: "2026",
-    title: "Re-Launch",
-    subtitle: "The Next Chapter",
+    title: "The Relaunch",
+    subtitle: "Same Name, New Identity",
     description:
-      "Secundarian re-emerges with an expanded product architecture, new manufacturing partners, and a direct-to-consumer model built for scale. The same uncompromising standards, now fully realised.",
-  },
-  {
-    year: "2026",
-    title: "Beyond the Worksite",
-    subtitle: "From Workshop to World",
-    description:
-      "Introduced technical outerwear and transitional evening lines. The same engineering DNA, refined for every hour of the day. Workwear that moves seamlessly from site to street.",
+      "Secundarian re-emerges with a new logo — inspired by the cooling towers that define Secunda's skyline — and a redefined mission: fashion-forward workwear rooted in hometown pride. The name stays. Everything else levels up.",
   },
 ];
 
@@ -239,9 +232,9 @@ export default function SecundarianTimeline() {
               mx: "auto",
             }}
           >
-            Secundarian began with a straightforward question: why does
-            serious workwear so often force a choice between durability,
-            comfort, and appearance?
+            From comedy stages to cooling towers — how a hometown identity
+            became a brand, and how a conversation over drinks in Cape Town
+            changed everything.
           </Typography>
         </Box>
 

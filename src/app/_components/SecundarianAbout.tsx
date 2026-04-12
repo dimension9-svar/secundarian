@@ -8,10 +8,10 @@ const MotionBox = motion.create(Box);
 const MotionTypography = motion.create(Typography);
 
 const stats = [
-  { value: "2019", label: "Founded" },
-  { value: "47", label: "Artisan Partners" },
-  { value: "12", label: "Countries" },
-  { value: "100%", label: "Ethical Sourcing" },
+  { value: "Secunda", label: "Hometown Origin" },
+  { value: "2021", label: "Founded" },
+  { value: "5+", label: "Product Lines" },
+  { value: "1", label: "Bold Pivot" },
 ];
 
 export default function SecundarianAbout() {
@@ -38,7 +38,7 @@ export default function SecundarianAbout() {
               transition={{ duration: 0.5 }}
               sx={{ color: "secondary.main", mb: 2, display: "block" }}
             >
-              The Secundarian Difference
+              The Origin Story
             </MotionTypography>
 
             <MotionTypography
@@ -51,9 +51,9 @@ export default function SecundarianAbout() {
                 mb: 4,
               }}
             >
-              Where purpose meets
+              From the stage
               <br />
-              precision
+              to the streets
             </MotionTypography>
 
             <MotionTypography
@@ -63,10 +63,11 @@ export default function SecundarianAbout() {
               transition={{ duration: 0.5, delay: 0.2 }}
               sx={{ color: "text.secondary", mb: 3, maxWidth: 520 }}
             >
-              Secundarian was born from a simple conviction: the people who build
-              our world deserve clothing built with the same integrity. We source
-              the finest performance textiles and partner with heritage
-              manufacturers who share our obsession with detail.
+              Every MC at every comedy show introduced him the same way:
+              &ldquo;Wayne Stuart from Secunda.&rdquo; That hometown identity
+              stuck — and when the dream of a clothing brand finally took shape,
+              the name was already waiting. Secundarian was born from Secunda,
+              Mpumalanga.
             </MotionTypography>
 
             <MotionTypography
@@ -76,9 +77,10 @@ export default function SecundarianAbout() {
               transition={{ duration: 0.5, delay: 0.3 }}
               sx={{ color: "text.secondary", maxWidth: 520 }}
             >
-              Every garment undergoes rigorous field testing — from scaffolding
-              in winter rain to engine bays in summer heat. What survives earns
-              the Secundarian mark.
+              What started with T-shirts in four colours and sizes grew into
+              bucket hats, hoodies, sweaters, and trucker caps that sold like
+              hot cakes. Then came the pivot — fashion meets workwear — and a
+              whole new chapter began.
             </MotionTypography>
           </Box>
 
@@ -137,8 +139,8 @@ export default function SecundarianAbout() {
                   fontSize: "1rem",
                 }}
               >
-                &ldquo;We don&rsquo;t follow trends. We follow the people who
-                make the world work.&rdquo;
+                &ldquo;Why don&rsquo;t you take Secundarian into the workwear
+                space? But think fashion meets workwear, not PPE.&rdquo;
               </Typography>
             </Box>
           </MotionBox>

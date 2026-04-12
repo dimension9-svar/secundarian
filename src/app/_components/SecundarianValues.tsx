@@ -3,37 +3,37 @@
 import { Box, Container, Typography, Grid } from "@mui/material";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import PrecisionManufacturingIcon from "@mui/icons-material/PrecisionManufacturing";
-import ShieldIcon from "@mui/icons-material/Shield";
-import RecyclingIcon from "@mui/icons-material/Recycling";
+import HomeWorkIcon from "@mui/icons-material/HomeWork";
+import TheaterComedyIcon from "@mui/icons-material/TheaterComedy";
 import GroupsIcon from "@mui/icons-material/Groups";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 
 const MotionBox = motion.create(Box);
 
 const values = [
   {
-    icon: <PrecisionManufacturingIcon sx={{ fontSize: 32 }} />,
-    title: "Precision Engineering",
+    icon: <HomeWorkIcon sx={{ fontSize: 32 }} />,
+    title: "Hometown Pride",
     description:
-      "Every pattern is drafted to 0.5mm tolerance. Every seam is stress-tested to 3x its rated load. We engineer garments the way others engineer bridges.",
+      "Secundarian is Secunda. Named after the town, shaped by its landscape — from the cooling towers on the skyline to the petrochemical heartland of Mpumalanga. Every piece carries that origin.",
   },
   {
-    icon: <ShieldIcon sx={{ fontSize: 32 }} />,
-    title: "Uncompromising Durability",
+    icon: <TheaterComedyIcon sx={{ fontSize: 32 }} />,
+    title: "Creative Roots",
     description:
-      "Our fabrics are selected through a 14-point evaluation protocol. If it doesn't survive 500 wash cycles and simulated field abuse, it doesn't ship.",
-  },
-  {
-    icon: <RecyclingIcon sx={{ fontSize: 32 }} />,
-    title: "Circular Responsibility",
-    description:
-      "From organic cotton to recycled polyester, every material choice is measured against its full lifecycle impact. Built to last means less waste by design.",
+      "Born from a performer's dream of building something beyond the stage. Wayne Stuart's journey from comedy circuits to clothing proves that the best brands come from real stories, not boardrooms.",
   },
   {
     icon: <GroupsIcon sx={{ fontSize: 32 }} />,
-    title: "Worker-First Design",
+    title: "Community-Driven",
     description:
-      "Designed in collaboration with tradespeople, not for them. Every pocket placement, every gusset, every ventilation zone — informed by the people who need it most.",
+      "The pivot to workwear didn't come from market research — it came from a friend's honest suggestion over drinks. Secundarian grows through real conversations and genuine connections.",
+  },
+  {
+    icon: <AutoAwesomeIcon sx={{ fontSize: 32 }} />,
+    title: "Fashion Meets Function",
+    description:
+      "Not PPE. Not fast fashion. Secundarian occupies the space between — workwear that looks as good as it performs. Industrial durability with design-forward thinking.",
   },
 ];
 
@@ -81,7 +81,7 @@ export default function SecundarianValues() {
               mb: 3,
             }}
           >
-            Built on conviction
+            What we stand for
           </Typography>
           <Typography
             variant="body1"
@@ -91,8 +91,8 @@ export default function SecundarianValues() {
               mx: "auto",
             }}
           >
-            Four pillars that define every decision we make, from thread
-            selection to global distribution.
+            Four principles forged from a real journey — from Secunda&rsquo;s
+            comedy stages to the workwear space.
           </Typography>
         </Box>
 
