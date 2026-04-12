@@ -16,34 +16,34 @@ const MotionBox = motion.create(Box);
 
 const collections = [
   {
-    title: "Streetwear Roots",
-    subtitle: "Tees & Bucket Hats",
+    title: "Foundation",
+    subtitle: "Core Workwear",
     description:
-      "Where it all began. Bold graphic tees and signature bucket hats that put Secundarian on the map — straight from Secunda to the streets.",
+      "The backbone of every job site. Reinforced seams, articulated knees, and fabrics that move with you through 16-hour shifts.",
     color: "#2C2C2C",
     accent: "#8B7355",
   },
   {
-    title: "Cold Season",
-    subtitle: "Hoodies & Sweaters",
+    title: "Forge",
+    subtitle: "Heavy Industry",
     description:
-      "Built for the colder months in Mpumalanga and beyond. Heavyweight fleece and layering pieces that brought warmth to the brand — literally.",
+      "Built for heat, sparks, and unforgiving environments. FR-rated materials with zero compromise on comfort or mobility.",
     color: "#1A1612",
     accent: "#C4A265",
   },
   {
-    title: "Trucker Caps",
-    subtitle: "The Breakout Hit",
+    title: "Meridian",
+    subtitle: "Technical Outerwear",
     description:
-      "The product that proved the demand. Secundarian trucker caps became a staple — selling like hot cakes and cementing the brand's street presence.",
+      "From dawn commutes to rooftop winds. Weatherproof shells with thermal regulation for those who work where the elements live.",
     color: "#2A2520",
     accent: "#A69378",
   },
   {
-    title: "Workwear Re/Defined",
-    subtitle: "Fashion Meets Function",
+    title: "Sable",
+    subtitle: "After Hours",
     description:
-      "The new chapter. Secundarian enters the workwear space with a difference — merging industrial durability with fashion-forward design. Same name, new identity.",
+      "The line between worksite and evening out, erased. Refined silhouettes that carry the same Secundarian durability DNA.",
     color: "#1E1E1E",
     accent: "#9B8B7A",
   },
@@ -84,13 +84,13 @@ export default function SecundarianCollections() {
               variant="h2"
               sx={{ fontSize: { xs: "2.25rem", md: "3rem" }, textTransform: "uppercase" }}
             >
-              The Range
+              Premium Workwear
             </Typography>
             <Typography
               variant="body1"
               sx={{ color: "text.secondary", mt: 1 }}
             >
-              From streetwear roots to workwear revolution
+              Engineered for every demand
             </Typography>
           </Box>
           <Button

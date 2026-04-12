@@ -68,7 +68,7 @@ export default function SecundarianHero() {
                 display: "block",
               }}
             >
-              From Secunda to the World — Fashion Meets Workwear
+              Premium Workwear — Engineered for Excellence
             </MotionTypography>
 
             <MotionTypography
@@ -82,12 +82,12 @@ export default function SecundarianHero() {
                 color: "text.primary",
               }}
             >
-              Born in{" "}
+              Built for the{" "}
               <Box component="span" sx={{ color: "secondary.main" }}>
-                Secunda.
+                shift.
               </Box>
               <br />
-              Built for everywhere.
+              Worn beyond it.
             </MotionTypography>
 
             <MotionTypography
@@ -102,9 +102,9 @@ export default function SecundarianHero() {
                 fontSize: "1.125rem",
               }}
             >
-              What started on comedy stages across South Africa became a clothing
-              brand rooted in hometown pride. Now, Secundarian is redefining
-              workwear — where fashion meets function, and identity meets industry.
+              Where industrial heritage meets modern craftsmanship. Every stitch,
+              every seam, every detail — purpose-built for those who demand more
+              from their workwear.
             </MotionTypography>
 
             <MotionBox
@@ -114,7 +114,7 @@ export default function SecundarianHero() {
             >
               <Stack direction="row" spacing={2}>
                 <Button variant="contained" color="primary" size="large">
-                  Explore the Range
+                  Explore Collection
                 </Button>
                 <Button variant="outlined" color="primary" size="large">
                   Our Story
@@ -169,7 +169,7 @@ export default function SecundarianHero() {
                     mb: 1,
                   }}
                 >
-                  2026
+                  SS26
                 </Typography>
                 <Typography
                   sx={{
@@ -179,7 +179,7 @@ export default function SecundarianHero() {
                     textTransform: "uppercase",
                   }}
                 >
-                  Fashion Meets Workwear
+                  Foundation Collection
                 </Typography>
               </Box>
               {/* Texture overlay */}

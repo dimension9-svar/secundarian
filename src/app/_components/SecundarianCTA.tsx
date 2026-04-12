@@ -48,7 +48,7 @@ export default function SecundarianCTA() {
               mb: 3,
             }}
           >
-            Join the Movement
+            Join the Workshop
           </Typography>
           <Typography
             variant="body1"
@@ -59,8 +59,8 @@ export default function SecundarianCTA() {
               mb: 5,
             }}
           >
-            Be first to know about new drops, behind-the-scenes updates, and
-            the next chapter of fashion meets workwear.
+            Early access to new collections, and stories from the people
+            who wear Secundarian every day.
           </Typography>
 
           <Box
@@ -145,7 +145,7 @@ export default function SecundarianCTA() {
             }}
           >
             No spam. Unsubscribe anytime. We respect your inbox like we
-            respect the hustle.
+            respect our fabrics.
           </Typography>
         </MotionBox>
       </Container>

@@ -23,16 +23,15 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Secundarian — Fashion Meets Workwear",
+  title: "Secundarian — Premium Workwear",
   description:
-    "Born in Secunda, Mpumalanga. Secundarian is fashion-forward workwear rooted in hometown pride — from comedy stages to cooling towers.",
+    "Where industrial heritage meets modern craftsmanship. Premium workwear engineered for those who build, forge, and create.",
   keywords: [
+    "premium workwear",
+    "industrial clothing",
+    "durable workwear",
+    "sustainable fashion",
     "Secundarian",
-    "fashion workwear",
-    "Secunda",
-    "Mpumalanga",
-    "South African clothing brand",
-    "workwear fashion",
   ],
 };
 
