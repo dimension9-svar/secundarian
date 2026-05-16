@@ -173,7 +173,11 @@ export default function SecundarianHero() {
               >
                 <Typography
                   sx={{
-                    fontFamily: '"Playfair Display", Georgia, serif',
+                    fontFamily: 'var(--font-bebas), "Bebas Neue", Impact, sans-serif',
+                    fontWeight: 400,
+                    WebkitTextStroke: "0.04em currentColor",
+                    textShadow: "0 0 0.4px currentColor",
+                    letterSpacing: "0.04em",
                     color: "rgba(255,255,255,0.9)",
                     fontSize: { md: "2rem", lg: "2.5rem" },
                     lineHeight: 1.2,

@@ -15,9 +15,18 @@ import TimelineContent from "@mui/lab/TimelineContent";
 import TimelineDot from "@mui/lab/TimelineDot";
 import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const MotionBox = motion.create(Box);
+
+const DISPLAY_FONT =
+  'var(--font-bebas), "Bebas Neue", Impact, sans-serif';
+const DISPLAY_BOLD_SX = {
+  fontFamily: DISPLAY_FONT,
+  fontWeight: 400,
+  WebkitTextStroke: "0.04em currentColor",
+  textShadow: "0 0 0.4px currentColor",
+} as const;
 
 const milestones = [
   {
@@ -53,22 +62,26 @@ const milestones = [
 function TimelineMilestone({
   milestone,
   index,
-  isActive,
-  onClick,
+  isLast,
+  onReveal,
 }: {
   milestone: (typeof milestones)[0];
   index: number;
-  isActive: boolean;
-  onClick: () => void;
+  isLast: boolean;
+  onReveal: (index: number) => void;
 }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = useInView(ref, { once: true, margin: "-25% 0px -25% 0px" });
+  const isActive = inView;
+
+  useEffect(() => {
+    if (inView) onReveal(index);
+  }, [inView, index, onReveal]);
 
   return (
     <TimelineItem
       ref={ref}
-      onClick={onClick}
-      sx={{ cursor: "pointer", minHeight: { xs: 180, md: 220 } }}
+      sx={{ minHeight: { xs: 180, md: 220 } }}
     >
       <TimelineOppositeContent
         sx={{
@@ -82,16 +95,17 @@ function TimelineMilestone({
         <MotionBox
           initial={{ opacity: 0, x: -30 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.5, delay: index * 0.1 }}
+          transition={{ duration: 0.5, delay: 0.05 }}
         >
           <Typography
             sx={{
-              fontFamily: '"Playfair Display", Georgia, serif',
-              fontSize: "2.5rem",
-              fontWeight: 400,
+              ...DISPLAY_BOLD_SX,
+              fontSize: "3rem",
+              letterSpacing: "0.03em",
               color: isActive ? "text.primary" : "rgba(26,26,26,0.2)",
               transition: "color 0.4s ease",
               lineHeight: 1,
+              mb: 0.5,
             }}
           >
             {milestone.year}
@@ -127,7 +141,7 @@ function TimelineMilestone({
             justifyContent: "center",
           }}
         />
-        {index < milestones.length - 1 && (
+        {!isLast && (
           <TimelineConnector
             sx={{
               bgcolor: "rgba(26,26,26,0.08)",
@@ -141,13 +155,14 @@ function TimelineMilestone({
         <MotionBox
           initial={{ opacity: 0, x: 30 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.5, delay: index * 0.1 + 0.1 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
         >
           <Box sx={{ display: { md: "none" }, mb: 1 }}>
             <Typography
               sx={{
-                fontFamily: '"Playfair Display", Georgia, serif',
-                fontSize: "1.5rem",
+                ...DISPLAY_BOLD_SX,
+                fontSize: "1.85rem",
+                letterSpacing: "0.03em",
                 color: isActive ? "secondary.main" : "text.secondary",
                 transition: "color 0.4s ease",
               }}
@@ -171,9 +186,9 @@ function TimelineMilestone({
           <Box
             sx={{
               overflow: "hidden",
-              maxHeight: isActive ? 200 : 0,
+              maxHeight: isActive ? 320 : 0,
               opacity: isActive ? 1 : 0,
-              transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+              transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
             }}
           >
             <Typography
@@ -196,7 +211,16 @@ function TimelineMilestone({
 export default function SecundarianTimeline() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [revealed, setRevealed] = useState<Set<number>>(() => new Set());
+
+  const handleReveal = useCallback((i: number) => {
+    setRevealed((prev) => {
+      if (prev.has(i)) return prev;
+      const next = new Set(prev);
+      next.add(i);
+      return next;
+    });
+  }, []);
 
   return (
     <Box
@@ -251,13 +275,13 @@ export default function SecundarianTimeline() {
               key={milestone.title}
               milestone={milestone}
               index={i}
-              isActive={activeIndex === i}
-              onClick={() => setActiveIndex(i)}
+              isLast={i === milestones.length - 1}
+              onReveal={handleReveal}
             />
           ))}
         </Timeline>
 
-        {/* Progress bar */}
+        {/* Progress strip — fills as each milestone is revealed */}
         <Box
           sx={{
             display: { xs: "none", md: "flex" },
@@ -266,28 +290,25 @@ export default function SecundarianTimeline() {
             gap: 1,
           }}
         >
-          {milestones.map((m, i) => (
-            <Box
-              key={m.year}
-              onClick={() => setActiveIndex(i)}
-              sx={{
-                width: activeIndex === i ? 48 : 24,
-                height: 3,
-                bgcolor:
-                  activeIndex === i ? "secondary.main" : "rgba(26,26,26,0.1)",
-                transition: "all 0.4s ease",
-                cursor: "pointer",
-                "&:hover": {
-                  bgcolor:
-                    activeIndex === i
-                      ? "secondary.main"
-                      : "rgba(26,26,26,0.2)",
-                },
-              }}
-            />
-          ))}
+          {milestones.map((m, i) => {
+            const isRevealed = revealed.has(i);
+            return (
+              <Box
+                key={m.year}
+                sx={{
+                  width: isRevealed ? 48 : 24,
+                  height: 3,
+                  bgcolor: isRevealed
+                    ? "secondary.main"
+                    : "rgba(26,26,26,0.1)",
+                  transition: "all 0.4s ease",
+                }}
+              />
+            );
+          })}
         </Box>
       </Container>
     </Box>
   );
 }
+
