@@ -90,11 +90,19 @@ export default function SecundarianHero() {
               }}
             >
               Built for the{" "}
-              <Box component="span" sx={{ color: "secondary.main" }}>
-                shift.
+              <Box
+                component="span"
+                sx={{
+                  color: "secondary.main",
+                  fontWeight: 700,
+                  WebkitTextStroke: "0.035em currentColor",
+                  textShadow: "0 0 0.4px currentColor",
+                }}
+              >
+                shift
               </Box>
               <br />
-              Worn beyond it.
+              Worn beyond it
             </MotionTypography>
 
             <MotionTypography
@@ -109,9 +117,9 @@ export default function SecundarianHero() {
                 fontSize: { xs: "1rem", md: "1.0625rem" },
               }}
             >
-              Where industrial heritage meets modern craftsmanship. Every stitch,
-              every seam, every detail is purpose-built for those who demand more
-              from their workwear.
+              Where industrial heritage meets modern craftsmanship — every
+              stitch, every seam, every detail is purpose-built for those who
+              demand more from their workwear
             </MotionTypography>
 
             <MotionBox
