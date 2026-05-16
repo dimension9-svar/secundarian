@@ -37,14 +37,17 @@ export default function SecundarianNavbar() {
         position="fixed"
         sx={{
           transition: "all 0.3s ease",
-          py: scrolled ? 0 : 0.5,
+          py: scrolled ? 1 : 1.75,
           borderBottom: scrolled
             ? "1px solid rgba(26,26,26,0.08)"
             : "1px solid transparent",
         }}
       >
-        <Container maxWidth="xl">
-          <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
+        <Container maxWidth="xl" sx={{ px: { xs: 3, md: 5 } }}>
+          <Toolbar
+            disableGutters
+            sx={{ justifyContent: "space-between", minHeight: { xs: 64, md: 80 } }}
+          >
             <Box
               component="a"
               href="#"
@@ -54,15 +57,22 @@ export default function SecundarianNavbar() {
                 gap: 1.5,
                 textDecoration: "none",
                 color: "inherit",
+                py: 1,
               }}
             >
               <Image
                 src="/secundarian-long-logo.svg"
                 alt="Secundarian"
-                width={180}
-                height={30}
+                width={240}
+                height={44}
                 priority
-                style={{ objectFit: "contain", objectPosition: "left" }}
+                style={{
+                  objectFit: "contain",
+                  objectPosition: "left",
+                  height: "auto",
+                  maxHeight: 44,
+                  width: "auto",
+                }}
               />
             </Box>
 

@@ -24,11 +24,31 @@ export default function SecundarianCTA() {
       ref={ref}
       sx={{
         py: { xs: 10, md: 16 },
-        bgcolor: "background.paper",
+        bgcolor: "#0D0D0D",
+        color: "rgba(255,255,255,0.92)",
         position: "relative",
+        overflow: "hidden",
+        "&::before": {
+          content: '""',
+          position: "absolute",
+          inset: 0,
+          background:
+            "radial-gradient(ellipse at 50% 0%, rgba(139,115,85,0.18) 0%, transparent 60%)",
+          pointerEvents: "none",
+        },
+        "&::after": {
+          content: '""',
+          position: "absolute",
+          inset: 0,
+          opacity: 0.03,
+          backgroundImage: `repeating-linear-gradient(
+            0deg, transparent, transparent 2px, rgba(255,255,255,0.5) 2px, rgba(255,255,255,0.5) 3px
+          )`,
+          pointerEvents: "none",
+        },
       }}
     >
-      <Container maxWidth="md">
+      <Container maxWidth="md" sx={{ position: "relative", zIndex: 1 }}>
         <MotionBox
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -37,7 +57,7 @@ export default function SecundarianCTA() {
         >
           <Typography
             variant="overline"
-            sx={{ color: "secondary.main", mb: 2, display: "block" }}
+            sx={{ color: "#C4A265", mb: 2, display: "block" }}
           >
             Stay Connected
           </Typography>
@@ -46,6 +66,7 @@ export default function SecundarianCTA() {
             sx={{
               fontSize: { xs: "2rem", md: "2.75rem" },
               mb: 3,
+              color: "rgba(255,255,255,0.95)",
             }}
           >
             Join the Workshop
@@ -53,7 +74,7 @@ export default function SecundarianCTA() {
           <Typography
             variant="body1"
             sx={{
-              color: "text.secondary",
+              color: "rgba(255,255,255,0.55)",
               maxWidth: 480,
               mx: "auto",
               mb: 5,
@@ -81,15 +102,15 @@ export default function SecundarianCTA() {
               sx={{
                 "& .MuiOutlinedInput-root": {
                   borderRadius: 0,
-                  bgcolor: "#F5F3EF",
+                  bgcolor: "rgba(255,255,255,0.05)",
                   "& fieldset": {
-                    borderColor: "transparent",
+                    borderColor: "rgba(255,255,255,0.12)",
                   },
                   "&:hover fieldset": {
-                    borderColor: "rgba(26,26,26,0.15)",
+                    borderColor: "rgba(255,255,255,0.25)",
                   },
                   "&.Mui-focused fieldset": {
-                    borderColor: "#8B7355",
+                    borderColor: "#C4A265",
                     borderWidth: "1.5px",
                   },
                 },
@@ -97,6 +118,11 @@ export default function SecundarianCTA() {
                   py: 1.75,
                   px: 2.5,
                   fontSize: "0.9375rem",
+                  color: "rgba(255,255,255,0.95)",
+                },
+                "& .MuiInputBase-input::placeholder": {
+                  color: "rgba(255,255,255,0.4)",
+                  opacity: 1,
                 },
               }}
               slotProps={{
@@ -138,10 +164,9 @@ export default function SecundarianCTA() {
           <Typography
             variant="body2"
             sx={{
-              color: "text.secondary",
+              color: "rgba(255,255,255,0.4)",
               mt: 2,
               fontSize: "0.75rem",
-              opacity: 0.6,
             }}
           >
             No spam. Unsubscribe anytime. We respect your inbox like we

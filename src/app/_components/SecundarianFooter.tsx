@@ -49,9 +49,10 @@ export default function SecundarianFooter() {
               </Box>
               <Typography
                 sx={{
-                  fontFamily: '"Playfair Display", Georgia, serif',
-                  fontSize: "1.2rem",
-                  letterSpacing: "0.08em",
+                  fontFamily: 'var(--font-bebas), "Bebas Neue", Impact, sans-serif',
+                  fontSize: "1.5rem",
+                  letterSpacing: "0.12em",
+                  lineHeight: 1,
                 }}
               >
                 SECUNDARIAN

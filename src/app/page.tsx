@@ -4,7 +4,6 @@ import SecundarianHero from "./_components/SecundarianHero";
 import SecundarianAbout from "./_components/SecundarianAbout";
 import SecundarianCollections from "./_components/SecundarianCollections";
 import SecundarianTimeline from "./_components/SecundarianTimeline";
-import SecundarianValues from "./_components/SecundarianValues";
 import SecundarianCTA from "./_components/SecundarianCTA";
 import SecundarianInstagram from "./_components/SecundarianInstagram";
 import SecundarianFooter from "./_components/SecundarianFooter";
@@ -17,7 +16,6 @@ export default function SecundarianLandingPage() {
       <SecundarianAbout />
       <SecundarianCollections />
       <SecundarianTimeline />
-      <SecundarianValues />
       <SecundarianCTA />
       <SecundarianInstagram />
       <SecundarianFooter />

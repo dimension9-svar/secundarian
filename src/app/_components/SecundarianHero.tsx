@@ -10,11 +10,13 @@ export default function SecundarianHero() {
   return (
     <Box
       sx={{
-        minHeight: "100vh",
+        minHeight: { xs: "100svh", md: "92vh" },
         display: "flex",
         alignItems: "center",
         position: "relative",
         overflow: "hidden",
+        pt: { xs: 14, md: 12 },
+        pb: { xs: 8, md: 10 },
         background:
           "linear-gradient(165deg, #FAFAF8 0%, #F0EDE8 40%, #E8E3DB 100%)",
       }}
@@ -45,17 +47,16 @@ export default function SecundarianHero() {
         }}
       />
 
-      <Container maxWidth="xl" sx={{ position: "relative", zIndex: 1 }}>
+      <Container maxWidth="xl" sx={{ position: "relative", zIndex: 1, px: { xs: 3, md: 5 } }}>
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-            gap: { xs: 6, md: 8 },
+            gridTemplateColumns: { xs: "1fr", md: "1.05fr 0.95fr" },
+            gap: { xs: 5, md: 6, lg: 8 },
             alignItems: "center",
-            pt: { xs: 12, md: 0 },
           }}
         >
-          <Box>
+          <Box sx={{ minWidth: 0 }}>
             <MotionTypography
               variant="overline"
               initial={{ opacity: 0, y: 20 }}
@@ -63,8 +64,8 @@ export default function SecundarianHero() {
               transition={{ duration: 0.6, delay: 0.2 }}
               sx={{
                 color: "secondary.main",
-                fontSize: "0.75rem",
-                mb: 3,
+                fontSize: { xs: "0.6875rem", md: "0.75rem" },
+                mb: { xs: 2, md: 3 },
                 display: "block",
               }}
             >
@@ -77,8 +78,14 @@ export default function SecundarianHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               sx={{
-                fontSize: { xs: "3.5rem", sm: "4.5rem", md: "5.5rem", lg: "6.5rem" },
-                mb: 3,
+                fontSize: {
+                  xs: "2.5rem",
+                  sm: "3.25rem",
+                  md: "3.75rem",
+                  lg: "4.75rem",
+                  xl: "5.5rem",
+                },
+                mb: { xs: 2.5, md: 3 },
                 color: "text.primary",
               }}
             >
@@ -97,13 +104,13 @@ export default function SecundarianHero() {
               transition={{ duration: 0.6, delay: 0.7 }}
               sx={{
                 color: "text.secondary",
-                maxWidth: 480,
-                mb: 5,
-                fontSize: "1.125rem",
+                maxWidth: 520,
+                mb: { xs: 4, md: 5 },
+                fontSize: { xs: "1rem", md: "1.0625rem" },
               }}
             >
               Where industrial heritage meets modern craftsmanship. Every stitch,
-              every seam, every detail — purpose-built for those who demand more
+              every seam, every detail is purpose-built for those who demand more
               from their workwear.
             </MotionTypography>
 
@@ -112,11 +119,15 @@ export default function SecundarianHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.9 }}
             >
-              <Stack direction="row" spacing={2}>
-                <Button variant="contained" color="primary" size="large">
+              <Stack
+                direction={{ xs: "column", sm: "row" }}
+                spacing={2}
+                sx={{ width: { xs: "100%", sm: "auto" } }}
+              >
+                <Button variant="contained" color="primary" size="large" fullWidth={false}>
                   Explore Collection
                 </Button>
-                <Button variant="outlined" color="primary" size="large">
+                <Button variant="outlined" color="primary" size="large" fullWidth={false}>
                   Our Story
                 </Button>
               </Stack>
@@ -137,7 +148,7 @@ export default function SecundarianHero() {
             <Box
               sx={{
                 width: "100%",
-                maxWidth: 520,
+                maxWidth: { md: 380, lg: 460, xl: 520 },
                 aspectRatio: "3/4",
                 position: "relative",
                 background:

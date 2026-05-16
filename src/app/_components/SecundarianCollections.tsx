@@ -17,33 +17,25 @@ const MotionBox = motion.create(Box);
 const collections = [
   {
     title: "Foundation",
-    subtitle: "Core Workwear",
-    description:
-      "The backbone of every job site. Reinforced seams, articulated knees, and fabrics that move with you through 16-hour shifts.",
+    subtitle: "Oversized Tee",
     color: "#2C2C2C",
     accent: "#8B7355",
   },
   {
     title: "Forge",
-    subtitle: "Heavy Industry",
-    description:
-      "Built for heat, sparks, and unforgiving environments. FR-rated materials with zero compromise on comfort or mobility.",
+    subtitle: "Shirts",
     color: "#1A1612",
     accent: "#C4A265",
   },
   {
     title: "Meridian",
-    subtitle: "Technical Outerwear",
-    description:
-      "From dawn commutes to rooftop winds. Weatherproof shells with thermal regulation for those who work where the elements live.",
+    subtitle: "Cargo Pants",
     color: "#2A2520",
     accent: "#A69378",
   },
   {
     title: "Sable",
-    subtitle: "After Hours",
-    description:
-      "The line between worksite and evening out, erased. Refined silhouettes that carry the same Secundarian durability DNA.",
+    subtitle: "Beanies",
     color: "#1E1E1E",
     accent: "#9B8B7A",
   },
@@ -87,8 +79,15 @@ export default function SecundarianCollections() {
               Premium Workwear
             </Typography>
             <Typography
-              variant="body1"
-              sx={{ color: "text.secondary", mt: 1 }}
+              sx={{
+                fontFamily: 'var(--font-bebas), "Bebas Neue", Impact, sans-serif',
+                fontSize: { xs: "1.5rem", md: "2rem" },
+                letterSpacing: "0.04em",
+                textTransform: "uppercase",
+                color: "text.primary",
+                mt: 1.5,
+                lineHeight: 1.1,
+              }}
             >
               Engineered for every demand
             </Typography>
@@ -125,6 +124,7 @@ export default function SecundarianCollections() {
                   height: "100%",
                   border: "none",
                   cursor: "pointer",
+                  bgcolor: "transparent",
                   transition: "transform 0.3s ease",
                   "&:hover": {
                     transform: "translateY(-4px)",
@@ -165,42 +165,30 @@ export default function SecundarianCollections() {
                       bgcolor: collection.accent,
                     }}
                   />
-                  <Box
+                </Box>
+                <CardContent sx={{ px: 0, pt: 2.5, pb: 0 }}>
+                  <Typography
                     sx={{
-                      position: "absolute",
-                      bottom: 24,
-                      left: 20,
-                      right: 20,
+                      fontFamily: 'var(--font-bebas), "Bebas Neue", Impact, sans-serif',
+                      fontSize: { xs: "1.5rem", md: "1.75rem" },
+                      letterSpacing: "0.04em",
+                      textTransform: "uppercase",
+                      lineHeight: 1.1,
+                      color: "text.primary",
                     }}
                   >
-                    <Typography
-                      sx={{
-                        fontFamily: '"Playfair Display", Georgia, serif',
-                        color: "rgba(255,255,255,0.9)",
-                        fontSize: "1.75rem",
-                        mb: 0.5,
-                      }}
-                    >
-                      {collection.title}
-                    </Typography>
-                    <Typography
-                      sx={{
-                        color: collection.accent,
-                        fontSize: "0.6875rem",
-                        letterSpacing: "0.15em",
-                        textTransform: "uppercase",
-                      }}
-                    >
-                      {collection.subtitle}
-                    </Typography>
-                  </Box>
-                </Box>
-                <CardContent sx={{ p: 3 }}>
+                    {collection.title}
+                  </Typography>
                   <Typography
-                    variant="body2"
-                    sx={{ color: "text.secondary", lineHeight: 1.7 }}
+                    sx={{
+                      color: "text.secondary",
+                      fontSize: "0.75rem",
+                      letterSpacing: "0.18em",
+                      textTransform: "uppercase",
+                      mt: 0.5,
+                    }}
                   >
-                    {collection.description}
+                    {collection.subtitle}
                   </Typography>
                 </CardContent>
               </Card>
