@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Container, Typography, Button, Stack } from "@mui/material";
+import { Box, Container, Typography, Button } from "@mui/material";
 import { motion } from "framer-motion";
 
 const MotionBox = motion.create(Box);
@@ -156,18 +156,20 @@ export default function SecundarianHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.9 }}
             >
-              <Stack
-                direction={{ xs: "column", sm: "row" }}
-                spacing={2}
-                sx={{ width: { xs: "100%", sm: "auto" } }}
+              <Button
+                component="a"
+                href="#collections"
+                variant="contained"
+                color="primary"
+                size="large"
+                sx={{
+                  width: { xs: "100%", sm: "auto" },
+                  alignSelf: "flex-start",
+                  px: { xs: 4, md: 5 },
+                }}
               >
-                <Button variant="contained" color="primary" size="large" fullWidth={false}>
-                  Explore Collection
-                </Button>
-                <Button variant="outlined" color="primary" size="large" fullWidth={false}>
-                  Our Story
-                </Button>
-              </Stack>
+                Explore Collection
+              </Button>
             </MotionBox>
           </Box>
 
