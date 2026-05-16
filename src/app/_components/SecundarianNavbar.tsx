@@ -21,9 +21,8 @@ import { useState } from "react";
 import Image from "next/image";
 
 const navLinks = [
-  { label: "Collections", href: "#collections" },
   { label: "Our Story", href: "#timeline" },
-  { label: "Values", href: "#values" },
+  { label: "Collections", href: "#collections" },
   { label: "Contact", href: "#contact" },
 ];
 

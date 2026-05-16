@@ -1,8 +1,21 @@
 "use client";
 
-import { Box, Container, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import Timeline from "@mui/lab/Timeline";
+import TimelineItem from "@mui/lab/TimelineItem";
+import TimelineSeparator from "@mui/lab/TimelineSeparator";
+import TimelineConnector from "@mui/lab/TimelineConnector";
+import TimelineContent from "@mui/lab/TimelineContent";
+import TimelineDot from "@mui/lab/TimelineDot";
+import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const MotionBox = motion.create(Box);
 
@@ -10,129 +23,192 @@ const milestones = [
   {
     year: "2021",
     title: "The Beginning",
+    subtitle: "Four Colours, One Hometown",
     description:
       "Like every great story, Secundarian started small. The journey began with a simple collection of T-shirts in a few colours and sizes — clean, authentic, and true to its roots.",
   },
   {
     year: "2023",
     title: "The Range Grows",
+    subtitle: "Bucket Hats to Trucker Caps",
     description:
       "Bucket hats came next, followed by hoodies and sweaters for the colder seasons. Then came the trucker caps — an instant favourite that sold fast and gave the brand real momentum.",
   },
   {
     year: "2025",
     title: "The Cape Town Pivot",
+    subtitle: "A Conversation That Changed Everything",
     description:
       "During a conversation with friends in the Mother City, the topic turned to everything people hated about existing clothing brands. Then one suggestion changed the direction of Secundarian: “Why not take it into workwear — but make it fashion meets workwear, not PPE?” That was the shift.",
   },
   {
     year: "2026",
     title: "The Relaunch",
+    subtitle: "Same Name, New Identity",
     description:
       "Secundarian re-emerges with a new logo — inspired by the cooling towers that define Secunda's skyline — and a redefined mission: fashion-forward workwear rooted in hometown pride. Everything else levels up.",
   },
 ];
 
-function MilestoneRow({
+function TimelineMilestone({
   milestone,
   index,
-  isFirst,
+  isActive,
+  onClick,
 }: {
   milestone: (typeof milestones)[0];
   index: number;
-  isFirst: boolean;
+  isActive: boolean;
+  onClick: () => void;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-15% 0px -15% 0px" });
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <Box
+    <TimelineItem
       ref={ref}
-      sx={{
-        borderTop: isFirst ? "none" : "1px solid rgba(26,26,26,0.1)",
-        py: { xs: 6, md: 10 },
-        display: "grid",
-        gridTemplateColumns: { xs: "1fr", md: "minmax(220px, 0.7fr) 2fr" },
-        columnGap: { md: 8 },
-        rowGap: { xs: 3, md: 0 },
-        alignItems: "start",
-      }}
+      onClick={onClick}
+      sx={{ cursor: "pointer", minHeight: { xs: 180, md: 220 } }}
     >
-      {/* Year + index */}
-      <MotionBox
-        initial={{ opacity: 0, y: 24 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      <TimelineOppositeContent
+        sx={{
+          flex: { xs: 0, md: 0.35 },
+          display: { xs: "none", md: "block" },
+          pt: 3,
+          pr: 4,
+          textAlign: "right",
+        }}
       >
-        <Typography
-          sx={{
-            fontFamily:
-              'var(--font-bebas), "Bebas Neue", Impact, sans-serif',
-            fontSize: { xs: "0.75rem", md: "0.8125rem" },
-            letterSpacing: "0.25em",
-            color: "secondary.main",
-            mb: { xs: 1, md: 1.5 },
-            display: "block",
-          }}
+        <MotionBox
+          initial={{ opacity: 0, x: -30 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.5, delay: index * 0.1 }}
         >
-          {String(index + 1).padStart(2, "0")} / {String(milestones.length).padStart(2, "0")}
-        </Typography>
-        <Typography
-          sx={{
-            fontFamily:
-              'var(--font-bebas), "Bebas Neue", Impact, sans-serif',
-            fontSize: { xs: "4.5rem", sm: "5.5rem", md: "7rem", lg: "8.5rem" },
-            letterSpacing: "0.02em",
-            lineHeight: 0.9,
-            color: "text.primary",
-          }}
-        >
-          {milestone.year}
-        </Typography>
-      </MotionBox>
+          <Typography
+            sx={{
+              fontFamily: '"Playfair Display", Georgia, serif',
+              fontSize: "2.5rem",
+              fontWeight: 400,
+              color: isActive ? "text.primary" : "rgba(26,26,26,0.2)",
+              transition: "color 0.4s ease",
+              lineHeight: 1,
+            }}
+          >
+            {milestone.year}
+          </Typography>
+          <Typography
+            variant="overline"
+            sx={{
+              color: isActive ? "secondary.main" : "text.secondary",
+              transition: "color 0.4s ease",
+              fontSize: "0.6875rem",
+            }}
+          >
+            {milestone.subtitle}
+          </Typography>
+        </MotionBox>
+      </TimelineOppositeContent>
 
-      {/* Title + body */}
-      <MotionBox
-        initial={{ opacity: 0, y: 24 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-        sx={{ maxWidth: 620, pt: { md: 2 } }}
-      >
-        <Typography
-          variant="h3"
+      <TimelineSeparator>
+        <TimelineDot
           sx={{
-            fontSize: { xs: "1.5rem", md: "2rem" },
-            mb: { xs: 2, md: 2.5 },
-            color: "text.primary",
+            width: isActive ? 20 : 12,
+            height: isActive ? 20 : 12,
+            bgcolor: isActive ? "secondary.main" : "rgba(26,26,26,0.12)",
+            boxShadow: isActive
+              ? "0 0 0 6px rgba(139,115,85,0.15)"
+              : "none",
+            transition: "all 0.4s ease",
+            border: "none",
+            m: "auto",
+            p: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
+        />
+        {index < milestones.length - 1 && (
+          <TimelineConnector
+            sx={{
+              bgcolor: "rgba(26,26,26,0.08)",
+              width: 1,
+            }}
+          />
+        )}
+      </TimelineSeparator>
+
+      <TimelineContent sx={{ pt: 2, pb: 4, pl: { xs: 3, md: 4 }, flex: 1 }}>
+        <MotionBox
+          initial={{ opacity: 0, x: 30 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.5, delay: index * 0.1 + 0.1 }}
         >
-          {milestone.title}
-        </Typography>
-        <Typography
-          variant="body1"
-          sx={{
-            color: "text.secondary",
-            lineHeight: 1.8,
-          }}
-        >
-          {milestone.description}
-        </Typography>
-      </MotionBox>
-    </Box>
+          <Box sx={{ display: { md: "none" }, mb: 1 }}>
+            <Typography
+              sx={{
+                fontFamily: '"Playfair Display", Georgia, serif',
+                fontSize: "1.5rem",
+                color: isActive ? "secondary.main" : "text.secondary",
+                transition: "color 0.4s ease",
+              }}
+            >
+              {milestone.year}
+            </Typography>
+          </Box>
+
+          <Typography
+            variant="h3"
+            sx={{
+              fontSize: { xs: "1.25rem", md: "1.5rem" },
+              mb: 1,
+              color: isActive ? "text.primary" : "rgba(26,26,26,0.5)",
+              transition: "color 0.4s ease",
+            }}
+          >
+            {milestone.title}
+          </Typography>
+
+          <Box
+            sx={{
+              overflow: "hidden",
+              maxHeight: isActive ? 200 : 0,
+              opacity: isActive ? 1 : 0,
+              transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+            }}
+          >
+            <Typography
+              variant="body2"
+              sx={{
+                color: "text.secondary",
+                maxWidth: 420,
+                pt: 1,
+              }}
+            >
+              {milestone.description}
+            </Typography>
+          </Box>
+        </MotionBox>
+      </TimelineContent>
+    </TimelineItem>
   );
 }
 
 export default function SecundarianTimeline() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
     <Box
       id="timeline"
       sx={{
         py: { xs: 10, md: 16 },
         bgcolor: "background.paper",
+        position: "relative",
       }}
     >
-      <Container maxWidth="lg" sx={{ px: { xs: 3, md: 5 } }}>
-        <Box sx={{ textAlign: "center", mb: { xs: 8, md: 12 } }}>
+      <Container maxWidth="lg">
+        <Box sx={{ textAlign: "center", mb: { xs: 6, md: 10 } }}>
           <Typography
             variant="overline"
             sx={{ color: "secondary.main", mb: 2, display: "block" }}
@@ -152,7 +228,7 @@ export default function SecundarianTimeline() {
             variant="body1"
             sx={{
               color: "text.secondary",
-              maxWidth: 640,
+              maxWidth: 560,
               mx: "auto",
             }}
           >
@@ -161,13 +237,53 @@ export default function SecundarianTimeline() {
           </Typography>
         </Box>
 
-        <Box>
-          {milestones.map((m, i) => (
-            <MilestoneRow
-              key={m.year}
-              milestone={m}
+        <Timeline
+          position={isMobile ? "right" : "alternate-reverse"}
+          sx={{
+            px: { xs: 0, md: 4 },
+            [`& .MuiTimelineItem-root:before`]: isMobile
+              ? { flex: 0, padding: 0 }
+              : {},
+          }}
+        >
+          {milestones.map((milestone, i) => (
+            <TimelineMilestone
+              key={milestone.title}
+              milestone={milestone}
               index={i}
-              isFirst={i === 0}
+              isActive={activeIndex === i}
+              onClick={() => setActiveIndex(i)}
+            />
+          ))}
+        </Timeline>
+
+        {/* Progress bar */}
+        <Box
+          sx={{
+            display: { xs: "none", md: "flex" },
+            justifyContent: "center",
+            mt: 6,
+            gap: 1,
+          }}
+        >
+          {milestones.map((m, i) => (
+            <Box
+              key={m.year}
+              onClick={() => setActiveIndex(i)}
+              sx={{
+                width: activeIndex === i ? 48 : 24,
+                height: 3,
+                bgcolor:
+                  activeIndex === i ? "secondary.main" : "rgba(26,26,26,0.1)",
+                transition: "all 0.4s ease",
+                cursor: "pointer",
+                "&:hover": {
+                  bgcolor:
+                    activeIndex === i
+                      ? "secondary.main"
+                      : "rgba(26,26,26,0.2)",
+                },
+              }}
             />
           ))}
         </Box>

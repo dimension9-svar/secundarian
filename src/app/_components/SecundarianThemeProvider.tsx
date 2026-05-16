@@ -30,7 +30,7 @@ const secundarianTheme = createTheme({
     divider: "rgba(26, 26, 26, 0.08)",
   },
   typography: {
-    fontFamily: '"DM Sans", "Inter", "Helvetica Neue", Arial, sans-serif',
+    fontFamily: 'var(--font-outfit), "Outfit", "Inter", "Helvetica Neue", Arial, sans-serif',
     h1: {
       fontFamily: 'var(--font-bebas), "Bebas Neue", "Impact", sans-serif',
       fontWeight: 400,
@@ -53,13 +53,13 @@ const secundarianTheme = createTheme({
       textTransform: "uppercase" as const,
     },
     h4: {
-      fontFamily: '"DM Sans", "Inter", sans-serif',
+      fontFamily: 'var(--font-outfit), "Outfit", "Inter", sans-serif',
       fontWeight: 500,
       letterSpacing: "0.02em",
       textTransform: "uppercase" as const,
     },
     h5: {
-      fontFamily: '"DM Sans", "Inter", sans-serif',
+      fontFamily: 'var(--font-outfit), "Outfit", "Inter", sans-serif',
       fontWeight: 500,
       letterSpacing: "0.05em",
       textTransform: "uppercase" as const,
@@ -76,13 +76,13 @@ const secundarianTheme = createTheme({
       letterSpacing: "0.01em",
     },
     button: {
-      fontFamily: '"DM Sans", "Inter", sans-serif',
+      fontFamily: 'var(--font-outfit), "Outfit", "Inter", sans-serif',
       fontWeight: 500,
       letterSpacing: "0.1em",
       textTransform: "uppercase" as const,
     },
     overline: {
-      fontFamily: '"DM Sans", "Inter", sans-serif',
+      fontFamily: 'var(--font-outfit), "Outfit", "Inter", sans-serif',
       fontWeight: 500,
       letterSpacing: "0.15em",
       lineHeight: 1.5,

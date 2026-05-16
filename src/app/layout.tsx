@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, DM_Sans, Bebas_Neue } from "next/font/google";
+import { Playfair_Display, Outfit, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import SecundarianThemeProvider from "./_components/SecundarianThemeProvider";
 
@@ -16,8 +16,8 @@ const bebasNeue = Bebas_Neue({
   display: "swap",
 });
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
   display: "swap",
 });
@@ -43,7 +43,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${dmSans.variable} ${bebasNeue.variable} antialiased`}
+      className={`${playfair.variable} ${outfit.variable} ${bebasNeue.variable} antialiased`}
     >
       <body style={{ margin: 0 }}>
         <SecundarianThemeProvider>{children}</SecundarianThemeProvider>
