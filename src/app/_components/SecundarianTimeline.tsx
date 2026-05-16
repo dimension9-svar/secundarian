@@ -1,12 +1,7 @@
 "use client";
 
 import { Box, Container, Typography } from "@mui/material";
-import {
-  motion,
-  useInView,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const MotionBox = motion.create(Box);
@@ -38,197 +33,103 @@ const milestones = [
   },
 ];
 
-function Milestone({
+function MilestoneRow({
   milestone,
   index,
-  isLast,
+  isFirst,
 }: {
   milestone: (typeof milestones)[0];
   index: number;
-  isLast: boolean;
+  isFirst: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-20% 0px -20% 0px" });
-
-  const isLeft = index % 2 === 0;
+  const inView = useInView(ref, { once: true, margin: "-15% 0px -15% 0px" });
 
   return (
     <Box
       ref={ref}
       sx={{
+        borderTop: isFirst ? "none" : "1px solid rgba(26,26,26,0.1)",
+        py: { xs: 6, md: 10 },
         display: "grid",
-        gridTemplateColumns: { xs: "48px 1fr", md: "1fr 56px 1fr" },
-        columnGap: { xs: 3, md: 6 },
-        position: "relative",
-        pb: isLast ? 0 : { xs: 6, md: 10 },
+        gridTemplateColumns: { xs: "1fr", md: "minmax(220px, 0.7fr) 2fr" },
+        columnGap: { md: 8 },
+        rowGap: { xs: 3, md: 0 },
+        alignItems: "start",
       }}
     >
-      {/* Left content (desktop only) */}
-      <Box
-        sx={{
-          display: { xs: "none", md: "flex" },
-          justifyContent: "flex-end",
-          pr: 2,
-        }}
+      {/* Year + index */}
+      <MotionBox
+        initial={{ opacity: 0, y: 24 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        sx={{ position: "relative" }}
       >
-        {isLeft && (
-          <MotionBox
-            initial={{ opacity: 0, x: -40 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            sx={{ maxWidth: 460, textAlign: "right" }}
-          >
-            <MilestoneCard milestone={milestone} align="right" />
-          </MotionBox>
-        )}
-      </Box>
-
-      {/* Center rail */}
-      <Box
-        sx={{
-          position: "relative",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gridColumn: { xs: 1, md: 2 },
-        }}
-      >
-        {/* Vertical line above dot */}
-        {index > 0 && (
-          <Box
-            sx={{
-              position: "absolute",
-              top: -1,
-              bottom: "calc(100% - 28px)",
-              width: 1,
-              bgcolor: "rgba(26,26,26,0.12)",
-            }}
-          />
-        )}
-        {/* Dot */}
-        <MotionBox
-          initial={{ scale: 0, opacity: 0 }}
-          animate={inView ? { scale: 1, opacity: 1 } : {}}
-          transition={{ duration: 0.5, delay: 0.15 }}
+        <Typography
           sx={{
-            mt: { xs: 1, md: 1.5 },
-            width: 14,
-            height: 14,
-            borderRadius: "50%",
-            bgcolor: "secondary.main",
-            boxShadow: "0 0 0 6px rgba(139,115,85,0.18)",
-            position: "relative",
-            zIndex: 2,
+            fontFamily:
+              'var(--font-bebas), "Bebas Neue", Impact, sans-serif',
+            fontSize: { xs: "0.75rem", md: "0.8125rem" },
+            letterSpacing: "0.25em",
+            color: "secondary.main",
+            mb: { xs: 1, md: 1.5 },
+            display: "block",
           }}
-        />
-        {/* Vertical line below dot */}
-        {!isLast && (
-          <Box
-            sx={{
-              flex: 1,
-              width: 1,
-              mt: 1,
-              bgcolor: "rgba(26,26,26,0.12)",
-            }}
-          />
-        )}
-      </Box>
+        >
+          {String(index + 1).padStart(2, "0")} / {String(milestones.length).padStart(2, "0")}
+        </Typography>
+        <Typography
+          sx={{
+            fontFamily:
+              'var(--font-bebas), "Bebas Neue", Impact, sans-serif',
+            fontSize: { xs: "4.5rem", sm: "5.5rem", md: "7rem", lg: "8.5rem" },
+            letterSpacing: "0.02em",
+            lineHeight: 0.9,
+            color: "text.primary",
+          }}
+        >
+          {milestone.year}
+        </Typography>
+      </MotionBox>
 
-      {/* Right content + mobile content */}
-      <Box
-        sx={{
-          gridColumn: { xs: 2, md: 3 },
-          display: "flex",
-          alignItems: "flex-start",
-        }}
+      {/* Title + body */}
+      <MotionBox
+        initial={{ opacity: 0, y: 24 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+        sx={{ maxWidth: 620, pt: { md: 2 } }}
       >
-        {/* Mobile always shows */}
-        <Box sx={{ display: { xs: "block", md: "none" }, width: "100%" }}>
-          <MotionBox
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <MilestoneCard milestone={milestone} align="left" />
-          </MotionBox>
-        </Box>
-
-        {/* Desktop alternating */}
-        {!isLeft && (
-          <Box sx={{ display: { xs: "none", md: "block" }, maxWidth: 460 }}>
-            <MotionBox
-              initial={{ opacity: 0, x: 40 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <MilestoneCard milestone={milestone} align="left" />
-            </MotionBox>
-          </Box>
-        )}
-      </Box>
-    </Box>
-  );
-}
-
-function MilestoneCard({
-  milestone,
-  align,
-}: {
-  milestone: (typeof milestones)[0];
-  align: "left" | "right";
-}) {
-  return (
-    <Box sx={{ textAlign: { xs: "left", md: align } }}>
-      <Typography
-        sx={{
-          fontFamily: 'var(--font-bebas), "Bebas Neue", Impact, sans-serif',
-          fontSize: { xs: "2.75rem", md: "3.5rem" },
-          letterSpacing: "0.04em",
-          lineHeight: 1,
-          color: "secondary.main",
-          mb: 1.5,
-        }}
-      >
-        {milestone.year}
-      </Typography>
-      <Typography
-        variant="h3"
-        sx={{
-          fontSize: { xs: "1.5rem", md: "1.75rem" },
-          mb: 2,
-          color: "text.primary",
-        }}
-      >
-        {milestone.title}
-      </Typography>
-      <Typography
-        variant="body2"
-        sx={{
-          color: "text.secondary",
-          lineHeight: 1.75,
-        }}
-      >
-        {milestone.description}
-      </Typography>
+        <Typography
+          variant="h3"
+          sx={{
+            fontSize: { xs: "1.5rem", md: "2rem" },
+            mb: { xs: 2, md: 2.5 },
+            color: "text.primary",
+          }}
+        >
+          {milestone.title}
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{
+            color: "text.secondary",
+            lineHeight: 1.8,
+          }}
+        >
+          {milestone.description}
+        </Typography>
+      </MotionBox>
     </Box>
   );
 }
 
 export default function SecundarianTimeline() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start 70%", "end 30%"],
-  });
-  const fillHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-
   return (
     <Box
       id="timeline"
       sx={{
         py: { xs: 10, md: 16 },
         bgcolor: "background.paper",
-        position: "relative",
       }}
     >
       <Container maxWidth="lg" sx={{ px: { xs: 3, md: 5 } }}>
@@ -261,35 +162,13 @@ export default function SecundarianTimeline() {
           </Typography>
         </Box>
 
-        <Box ref={containerRef} sx={{ position: "relative" }}>
-          {/* Scroll progress fill — overlays the center rail */}
-          <Box
-            sx={{
-              position: "absolute",
-              top: 0,
-              bottom: 0,
-              left: { xs: 23, md: "calc(50% - 0.5px)" },
-              width: 1,
-              pointerEvents: "none",
-              zIndex: 1,
-            }}
-          >
-            <MotionBox
-              style={{ height: fillHeight }}
-              sx={{
-                width: 1,
-                bgcolor: "secondary.main",
-                transformOrigin: "top",
-              }}
-            />
-          </Box>
-
+        <Box>
           {milestones.map((m, i) => (
-            <Milestone
+            <MilestoneRow
               key={m.year}
               milestone={m}
               index={i}
-              isLast={i === milestones.length - 1}
+              isFirst={i === 0}
             />
           ))}
         </Box>
