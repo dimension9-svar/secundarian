@@ -17,25 +17,40 @@ export default function SecundarianHero() {
         overflow: "hidden",
         pt: { xs: 14, md: 12 },
         pb: { xs: 8, md: 10 },
-        background:
-          "linear-gradient(165deg, #FAFAF8 0%, #F0EDE8 40%, #E8E3DB 100%)",
+        backgroundColor: "#FAFAF8",
       }}
     >
-      {/* Decorative geometric elements */}
+      {/* Background image */}
       <Box
+        aria-hidden
         sx={{
           position: "absolute",
-          top: "10%",
-          right: "-5%",
-          width: "50vw",
-          height: "80vh",
-          background:
-            "linear-gradient(180deg, rgba(139,115,85,0.04) 0%, rgba(139,115,85,0.01) 100%)",
-          transform: "rotate(-12deg)",
+          inset: 0,
+          backgroundImage: "url('/hero-workshop.webp')",
+          backgroundSize: "cover",
+          backgroundPosition: { xs: "center center", md: "right center" },
+          backgroundRepeat: "no-repeat",
           pointerEvents: "none",
         }}
       />
+      {/* Fade overlay — heavy on the left for text legibility, lighter on the right so the image dominates */}
       <Box
+        aria-hidden
+        sx={{
+          position: "absolute",
+          inset: 0,
+          background: {
+            xs:
+              "linear-gradient(180deg, rgba(250,250,248,0.78) 0%, rgba(250,250,248,0.65) 40%, rgba(250,250,248,0.5) 100%)",
+            md:
+              "linear-gradient(95deg, rgba(250,250,248,0.97) 0%, rgba(250,250,248,0.93) 32%, rgba(250,250,248,0.7) 52%, rgba(250,250,248,0.28) 78%, rgba(250,250,248,0.1) 100%)",
+          },
+          pointerEvents: "none",
+        }}
+      />
+      {/* Bottom hairline */}
+      <Box
+        aria-hidden
         sx={{
           position: "absolute",
           bottom: 0,
@@ -43,7 +58,8 @@ export default function SecundarianHero() {
           right: 0,
           height: "1px",
           background:
-            "linear-gradient(90deg, transparent 0%, rgba(26,26,26,0.08) 50%, transparent 100%)",
+            "linear-gradient(90deg, transparent 0%, rgba(26,26,26,0.12) 50%, transparent 100%)",
+          pointerEvents: "none",
         }}
       />
 
@@ -173,82 +189,8 @@ export default function SecundarianHero() {
             </MotionBox>
           </Box>
 
-          {/* Hero visual - abstract workwear silhouette */}
-          <MotionBox
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            sx={{
-              display: { xs: "none", md: "flex" },
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Box
-              sx={{
-                width: "100%",
-                maxWidth: { md: 460, lg: 560, xl: 640 },
-                aspectRatio: "4/3",
-                position: "relative",
-                background:
-                  "linear-gradient(135deg, #2C2C2C 0%, #1A1A1A 60%, #0D0D0D 100%)",
-                overflow: "hidden",
-                "&::after": {
-                  content: '""',
-                  position: "absolute",
-                  inset: 0,
-                  background:
-                    "linear-gradient(180deg, transparent 60%, rgba(139,115,85,0.15) 100%)",
-                },
-              }}
-            >
-              <Box
-                sx={{
-                  position: "absolute",
-                  bottom: "10%",
-                  left: "10%",
-                  right: "10%",
-                }}
-              >
-                <Typography
-                  sx={{
-                    fontFamily: 'var(--font-bebas), "Bebas Neue", Impact, sans-serif',
-                    fontWeight: 400,
-                    WebkitTextStroke: "0.04em currentColor",
-                    textShadow: "0 0 0.4px currentColor",
-                    letterSpacing: "0.04em",
-                    color: "rgba(255,255,255,0.9)",
-                    fontSize: { md: "2rem", lg: "2.5rem" },
-                    lineHeight: 1.2,
-                    mb: 1,
-                  }}
-                >
-                  SS26
-                </Typography>
-                <Typography
-                  sx={{
-                    color: "rgba(255,255,255,0.5)",
-                    fontSize: "0.75rem",
-                    letterSpacing: "0.15em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Foundation Collection
-                </Typography>
-              </Box>
-              {/* Texture overlay */}
-              <Box
-                sx={{
-                  position: "absolute",
-                  inset: 0,
-                  opacity: 0.03,
-                  backgroundImage: `repeating-linear-gradient(
-                    0deg, transparent, transparent 2px, rgba(255,255,255,0.5) 2px, rgba(255,255,255,0.5) 3px
-                  )`,
-                }}
-              />
-            </Box>
-          </MotionBox>
+          {/* Right column intentionally empty — the background image fills this space */}
+          <Box sx={{ display: { xs: "none", md: "block" } }} />
         </Box>
       </Container>
     </Box>
