@@ -46,7 +46,7 @@ export default function SecundarianAbout() {
             >
               From the Stage
               <br />
-              to the Warehouse
+              to the Graaf
             </MotionTypography>
 
             <MotionTypography
