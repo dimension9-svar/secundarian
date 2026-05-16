@@ -18,6 +18,7 @@ import { motion, useInView } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const MotionBox = motion.create(Box);
+const MotionTimelineDot = motion.create(TimelineDot);
 
 const DISPLAY_FONT =
   'var(--font-bebas), "Bebas Neue", Impact, sans-serif';
@@ -124,7 +125,14 @@ function TimelineMilestone({
       </TimelineOppositeContent>
 
       <TimelineSeparator>
-        <TimelineDot
+        <MotionTimelineDot
+          animate={{ y: [0, -6, 0, 6, 0] }}
+          transition={{
+            duration: 4.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: index * 0.6,
+          }}
           sx={{
             width: isActive ? 20 : 12,
             height: isActive ? 20 : 12,
@@ -132,7 +140,7 @@ function TimelineMilestone({
             boxShadow: isActive
               ? "0 0 0 6px rgba(139,115,85,0.15)"
               : "none",
-            transition: "all 0.4s ease",
+            transition: "width 0.4s ease, height 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease",
             border: "none",
             m: "auto",
             p: 0,
