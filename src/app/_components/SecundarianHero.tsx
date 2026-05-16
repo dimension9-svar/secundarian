@@ -72,30 +72,67 @@ export default function SecundarianHero() {
               Premium Workwear — Engineered for Excellence
             </MotionTypography>
 
-            <MotionTypography
-              variant="h1"
+            <MotionBox
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               sx={{
-                fontSize: {
-                  xs: "2.5rem",
-                  sm: "3.25rem",
-                  md: "3.75rem",
-                  lg: "4.75rem",
-                  xl: "5.5rem",
-                },
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
                 mb: { xs: 2.5, md: 3 },
-                color: "text.primary",
+                lineHeight: 0.95,
               }}
             >
-              Built for the{" "}
-              <Box component="span" sx={{ color: "secondary.main" }}>
-                shift
-              </Box>
-              <br />
-              Worn beyond it
-            </MotionTypography>
+              <Typography
+                variant="h1"
+                sx={{
+                  fontSize: {
+                    xs: "2.5rem",
+                    sm: "3.25rem",
+                    md: "3.75rem",
+                    lg: "4.75rem",
+                    xl: "5.5rem",
+                  },
+                  color: "text.primary",
+                  lineHeight: 1,
+                }}
+              >
+                Built for the
+              </Typography>
+              <Typography
+                variant="h1"
+                sx={{
+                  fontSize: {
+                    xs: "2.5rem",
+                    sm: "3.25rem",
+                    md: "3.75rem",
+                    lg: "4.75rem",
+                    xl: "5.5rem",
+                  },
+                  color: "secondary.main",
+                  lineHeight: 1,
+                }}
+              >
+                Shift
+              </Typography>
+              <Typography
+                variant="h1"
+                sx={{
+                  fontSize: {
+                    xs: "2.5rem",
+                    sm: "3.25rem",
+                    md: "3.75rem",
+                    lg: "4.75rem",
+                    xl: "5.5rem",
+                  },
+                  color: "text.primary",
+                  lineHeight: 1,
+                }}
+              >
+                Worn beyond it
+              </Typography>
+            </MotionBox>
 
             <MotionTypography
               variant="body1"
