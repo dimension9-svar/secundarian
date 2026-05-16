@@ -26,7 +26,7 @@ export default function SecundarianHero() {
         sx={{
           position: "absolute",
           inset: 0,
-          backgroundImage: "url('/hero-workshop.webp')",
+          backgroundImage: "url('/hero-workshop.jpg')",
           backgroundSize: "cover",
           backgroundPosition: { xs: "center center", md: "right center" },
           backgroundRepeat: "no-repeat",

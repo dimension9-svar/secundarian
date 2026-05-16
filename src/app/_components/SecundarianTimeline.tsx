@@ -12,13 +12,11 @@ import TimelineItem from "@mui/lab/TimelineItem";
 import TimelineSeparator from "@mui/lab/TimelineSeparator";
 import TimelineConnector from "@mui/lab/TimelineConnector";
 import TimelineContent from "@mui/lab/TimelineContent";
-import TimelineDot from "@mui/lab/TimelineDot";
 import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
 import { motion, useInView } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const MotionBox = motion.create(Box);
-const MotionTimelineDot = motion.create(TimelineDot);
 
 const DISPLAY_FONT =
   'var(--font-bebas), "Bebas Neue", Impact, sans-serif';
@@ -125,38 +123,14 @@ function TimelineMilestone({
       </TimelineOppositeContent>
 
       <TimelineSeparator>
-        <MotionTimelineDot
-          animate={{ y: [0, -6, 0, 6, 0] }}
-          transition={{
-            duration: 4.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: index * 0.6,
-          }}
+        <TimelineConnector
           sx={{
-            width: isActive ? 20 : 12,
-            height: isActive ? 20 : 12,
-            bgcolor: isActive ? "secondary.main" : "rgba(26,26,26,0.12)",
-            boxShadow: isActive
-              ? "0 0 0 6px rgba(139,115,85,0.15)"
-              : "none",
-            transition: "width 0.4s ease, height 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease",
-            border: "none",
-            m: "auto",
-            p: 0,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            bgcolor: "secondary.main",
+            width: 2,
+            opacity: isLast ? 0 : 1,
+            flexGrow: 1,
           }}
         />
-        {!isLast && (
-          <TimelineConnector
-            sx={{
-              bgcolor: "rgba(26,26,26,0.08)",
-              width: 1,
-            }}
-          />
-        )}
       </TimelineSeparator>
 
       <TimelineContent sx={{ pt: 2, pb: 4, pl: { xs: 3, md: 4 }, flex: 1 }}>
@@ -306,9 +280,8 @@ export default function SecundarianTimeline() {
                 sx={{
                   width: isRevealed ? 48 : 24,
                   height: 3,
-                  bgcolor: isRevealed
-                    ? "secondary.main"
-                    : "rgba(26,26,26,0.1)",
+                  bgcolor: "secondary.main",
+                  opacity: isRevealed ? 1 : 0.3,
                   transition: "all 0.4s ease",
                 }}
               />
