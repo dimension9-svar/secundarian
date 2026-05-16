@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Container, Typography } from "@mui/material";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const MotionBox = motion.create(Box);
@@ -43,29 +43,11 @@ function MilestoneRow({
   isFirst: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-
-  // Drive opacity + translate from the row's position in the viewport.
-  // Row peaks in focus while centred; fades on entry and exit.
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-
-  const opacity = useTransform(
-    scrollYProgress,
-    [0, 0.25, 0.55, 0.85, 1],
-    [0, 1, 1, 0, 0],
-  );
-  const y = useTransform(
-    scrollYProgress,
-    [0, 0.25, 0.55, 0.85, 1],
-    [60, 0, 0, -40, -60],
-  );
+  const inView = useInView(ref, { once: true, margin: "-15% 0px -15% 0px" });
 
   return (
-    <MotionBox
+    <Box
       ref={ref}
-      style={{ opacity, y }}
       sx={{
         borderTop: isFirst ? "none" : "1px solid rgba(26,26,26,0.1)",
         py: { xs: 6, md: 10 },
@@ -77,7 +59,11 @@ function MilestoneRow({
       }}
     >
       {/* Year + index */}
-      <Box>
+      <MotionBox
+        initial={{ opacity: 0, y: 24 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      >
         <Typography
           sx={{
             fontFamily:
@@ -103,10 +89,15 @@ function MilestoneRow({
         >
           {milestone.year}
         </Typography>
-      </Box>
+      </MotionBox>
 
       {/* Title + body */}
-      <Box sx={{ maxWidth: 620, pt: { md: 2 } }}>
+      <MotionBox
+        initial={{ opacity: 0, y: 24 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+        sx={{ maxWidth: 620, pt: { md: 2 } }}
+      >
         <Typography
           variant="h3"
           sx={{
@@ -126,8 +117,8 @@ function MilestoneRow({
         >
           {milestone.description}
         </Typography>
-      </Box>
-    </MotionBox>
+      </MotionBox>
+    </Box>
   );
 }
 

@@ -90,15 +90,7 @@ export default function SecundarianHero() {
               }}
             >
               Built for the{" "}
-              <Box
-                component="span"
-                sx={{
-                  color: "secondary.main",
-                  fontWeight: 700,
-                  WebkitTextStroke: "0.035em currentColor",
-                  textShadow: "0 0 0.4px currentColor",
-                }}
-              >
+              <Box component="span" sx={{ color: "secondary.main" }}>
                 shift
               </Box>
               <br />
@@ -156,8 +148,8 @@ export default function SecundarianHero() {
             <Box
               sx={{
                 width: "100%",
-                maxWidth: { md: 380, lg: 460, xl: 520 },
-                aspectRatio: "3/4",
+                maxWidth: { md: 460, lg: 560, xl: 640 },
+                aspectRatio: "4/3",
                 position: "relative",
                 background:
                   "linear-gradient(135deg, #2C2C2C 0%, #1A1A1A 60%, #0D0D0D 100%)",
