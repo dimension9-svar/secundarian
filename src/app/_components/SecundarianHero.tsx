@@ -33,7 +33,7 @@ export default function SecundarianHero() {
           pointerEvents: "none",
         }}
       />
-      {/* Fade overlay — heavy on the left for text legibility, lighter on the right so the image dominates */}
+      {/* Fade overlay — soft tint behind the H1 column, image dominates everywhere else */}
       <Box
         aria-hidden
         sx={{
@@ -41,9 +41,9 @@ export default function SecundarianHero() {
           inset: 0,
           background: {
             xs:
-              "linear-gradient(180deg, rgba(250,250,248,0.78) 0%, rgba(250,250,248,0.65) 40%, rgba(250,250,248,0.5) 100%)",
+              "linear-gradient(180deg, rgba(250,250,248,0.55) 0%, rgba(250,250,248,0.38) 45%, rgba(250,250,248,0.18) 100%)",
             md:
-              "linear-gradient(95deg, rgba(250,250,248,0.97) 0%, rgba(250,250,248,0.93) 32%, rgba(250,250,248,0.7) 52%, rgba(250,250,248,0.28) 78%, rgba(250,250,248,0.1) 100%)",
+              "linear-gradient(95deg, rgba(250,250,248,0.62) 0%, rgba(250,250,248,0.52) 28%, rgba(250,250,248,0.3) 50%, rgba(250,250,248,0.08) 75%, rgba(250,250,248,0) 100%)",
           },
           pointerEvents: "none",
         }}
