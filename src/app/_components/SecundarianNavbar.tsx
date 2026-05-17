@@ -61,6 +61,7 @@ export default function SecundarianNavbar() {
                 textDecoration: "none",
                 color: "inherit",
                 py: 1,
+                filter: "invert(1)",
               }}
             >
               <Image
