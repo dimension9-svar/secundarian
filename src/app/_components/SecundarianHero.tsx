@@ -156,7 +156,7 @@ export default function SecundarianHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.7 }}
               sx={{
-                color: "text.secondary",
+                color: "text.primary",
                 maxWidth: 520,
                 mb: { xs: 4, md: 5 },
                 fontSize: { xs: "1rem", md: "1.0625rem" },

@@ -37,8 +37,12 @@ export default function SecundarianNavbar() {
         sx={{
           transition: "all 0.3s ease",
           py: scrolled ? 1 : 1.75,
+          backgroundColor: scrolled
+            ? "rgba(19, 19, 19, 0.92)"
+            : "rgba(19, 19, 19, 0.82)",
+          color: "#FAFAF8",
           borderBottom: scrolled
-            ? "1px solid rgba(26,26,26,0.08)"
+            ? "1px solid rgba(255,255,255,0.08)"
             : "1px solid transparent",
         }}
       >
@@ -89,13 +93,13 @@ export default function SecundarianNavbar() {
                   href={link.href}
                   sx={{
                     textDecoration: "none",
-                    color: "text.secondary",
+                    color: "rgba(250,250,248,0.7)",
                     fontSize: "0.8125rem",
                     fontWeight: 500,
                     letterSpacing: "0.1em",
                     textTransform: "uppercase",
                     transition: "color 0.2s ease",
-                    "&:hover": { color: "text.primary" },
+                    "&:hover": { color: "#FAFAF8" },
                   }}
                 >
                   {link.label}
@@ -103,16 +107,22 @@ export default function SecundarianNavbar() {
               ))}
               <Button
                 variant="contained"
-                color="primary"
                 size="small"
-                sx={{ ml: 2, px: 3, py: 1.2 }}
+                sx={{
+                  ml: 2,
+                  px: 3,
+                  py: 1.2,
+                  backgroundColor: "#FAFAF8",
+                  color: "#131313",
+                  "&:hover": { backgroundColor: "#FFFFFF" },
+                }}
               >
                 Shop Now
               </Button>
             </Box>
 
             <IconButton
-              sx={{ display: { md: "none" } }}
+              sx={{ display: { md: "none" }, color: "#FAFAF8" }}
               onClick={() => setDrawerOpen(true)}
             >
               <MenuIcon />
