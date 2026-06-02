@@ -33,21 +33,21 @@ const milestones = [
     title: "The Beginning",
     subtitle: "Four Colours, One Hometown",
     description:
-      "Like every great story, Secundarian started small. The journey began with a simple collection of T-shirts in a few colours and sizes — clean, authentic, and true to its roots.",
+      "Like every great story, Secundarian started small. The journey began with a simple collection of T-shirts in a few colours — clean, authentic, and true to its roots.",
   },
   {
     year: "2023",
     title: "The Range Grows",
-    subtitle: "Bucket Hats to Trucker Caps",
+    subtitle: "Winter Wear to Trucker Caps",
     description:
-      "Bucket hats came next, followed by hoodies and sweaters for the colder seasons. Then came the trucker caps — an instant favourite that sold fast and gave the brand real momentum.",
+      "Followed by hoodies and sweaters for the colder seasons. Then came the trucker caps — an instant favourite that sold fast and gave the brand real momentum.",
   },
   {
     year: "2025",
     title: "The Cape Town Pivot",
     subtitle: "A Conversation That Changed Everything",
     description:
-      "During a conversation with friends in the Mother City, the topic turned to everything people hated about existing clothing brands. Then one suggestion changed the direction of Secundarian: “Why not take it into workwear — but make it fashion meets workwear, not PPE?” That was the shift.",
+      "During a conversation with friends in the Mother City, one suggestion changed the direction of Secundarian: “Why not take it into workwear — but make it fashion meets workwear, not PPE?” Then came the shift.",
   },
   {
     year: "2026",
