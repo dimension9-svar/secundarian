@@ -59,6 +59,17 @@ export default function SecundarianFooter() {
               </Typography>
             </Box>
             <Typography
+              sx={{
+                color: "rgba(255,255,255,0.5)",
+                fontSize: "0.75rem",
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                mb: 2.5,
+              }}
+            >
+              Secunda, Mpumalanga
+            </Typography>
+            <Typography
               variant="body2"
               sx={{
                 color: "rgba(255,255,255,0.4)",
@@ -116,7 +127,11 @@ export default function SecundarianFooter() {
                   <li key={link}>
                     <Typography
                       component="a"
-                      href="#"
+                      href={
+                        link === "Contact"
+                          ? "mailto:info@secundarian.co.za"
+                          : "#"
+                      }
                       sx={{
                         color: "rgba(255,255,255,0.5)",
                         textDecoration: "none",

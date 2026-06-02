@@ -9,14 +9,28 @@ import {
   InputAdornment,
 } from "@mui/material";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const MotionBox = motion.create(Box);
 
+const CONTACT_EMAIL = "info@secundarian.co.za";
+
 export default function SecundarianCTA() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const trimmed = email.trim();
+    if (!trimmed) return;
+    const subject = encodeURIComponent("Secundarian — early access request");
+    const body = encodeURIComponent(
+      `Please add me to the Secundarian workshop list for early access to new collections.\n\nEmail: ${trimmed}`
+    );
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+  };
 
   return (
     <Box
@@ -86,7 +100,7 @@ export default function SecundarianCTA() {
 
           <Box
             component="form"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
             sx={{
               display: "flex",
               flexDirection: { xs: "column", sm: "row" },
@@ -97,6 +111,12 @@ export default function SecundarianCTA() {
           >
             <TextField
               fullWidth
+              required
+              type="email"
+              name="email"
+              autoComplete="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Your email address"
               variant="outlined"
               sx={{
