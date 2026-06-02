@@ -23,22 +23,27 @@ import { logoutAction } from "@/lib/auth/actions";
 
 const NAV = [
   { href: "/admin", label: "Dashboard" },
+  { href: "/admin/products", label: "Products" },
   { href: "/admin/settings", label: "Site Settings" },
   { href: "/admin/collections", label: "Collections" },
   { href: "/admin/timeline", label: "Timeline" },
   { href: "/admin/instagram", label: "Instagram" },
   { href: "/admin/store", label: "Store" },
+  { href: "/admin/users", label: "Users", adminOnly: true },
 ];
 
 const DRAWER_WIDTH = 248;
 
 export default function AdminShell({
   email,
+  role,
   children,
 }: {
   email: string;
+  role: string;
   children: ReactNode;
 }) {
+  const nav_items = NAV.filter((i) => !i.adminOnly || role === "admin");
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [open, setOpen] = useState(false);
@@ -64,7 +69,7 @@ export default function AdminShell({
         </Typography>
       </Box>
       <List sx={{ flex: 1, py: 2 }}>
-        {NAV.map((item) => (
+        {nav_items.map((item) => (
           <ListItemButton
             key={item.href}
             component={Link}

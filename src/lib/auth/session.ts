@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import { createHash, randomBytes } from "crypto";
 import { eq, lt } from "drizzle-orm";
 import { db } from "@/lib/db";
-import { adminUsers, sessions, type AdminUser } from "@/lib/db/schema";
+import { users, sessions, type User, type Role } from "@/lib/db/schema";
 
 export const SESSION_COOKIE = "secundarian_session";
 const SESSION_TTL_MS = 1000 * 60 * 60 * 24 * 7; // 7 days
@@ -12,8 +12,10 @@ function hashToken(token: string): string {
   return createHash("sha256").update(token).digest("hex");
 }
 
+export type SessionUser = Pick<User, "id" | "email" | "name"> & { role: Role };
+
 export type SessionContext = {
-  user: Pick<AdminUser, "id" | "email" | "name">;
+  user: SessionUser;
   sessionId: string;
 };
 
@@ -59,13 +61,14 @@ export async function getSession(): Promise<SessionContext | null> {
     .select({
       sessionId: sessions.id,
       expiresAt: sessions.expiresAt,
-      userId: adminUsers.id,
-      email: adminUsers.email,
-      name: adminUsers.name,
-      isActive: adminUsers.isActive,
+      userId: users.id,
+      email: users.email,
+      name: users.name,
+      role: users.role,
+      isActive: users.isActive,
     })
     .from(sessions)
-    .innerJoin(adminUsers, eq(sessions.userId, adminUsers.id))
+    .innerJoin(users, eq(sessions.userId, users.id))
     .where(eq(sessions.tokenHash, hashToken(token)))
     .limit(1);
 
@@ -78,7 +81,12 @@ export async function getSession(): Promise<SessionContext | null> {
   }
 
   return {
-    user: { id: row.userId, email: row.email, name: row.name },
+    user: {
+      id: row.userId,
+      email: row.email,
+      name: row.name,
+      role: row.role as Role,
+    },
     sessionId: row.sessionId,
   };
 }

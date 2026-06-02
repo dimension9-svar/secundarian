@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { eq } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { timelineMilestones } from "@/lib/db/schema";
-import { requireSession } from "@/lib/auth/guard";
+import { requireAdmin } from "@/lib/auth/guard";
 
 export type CrudState = { ok?: boolean; error?: string };
 
@@ -14,7 +14,7 @@ function refresh() {
 }
 
 export async function createMilestone(_prev: CrudState, formData: FormData): Promise<CrudState> {
-  await requireSession();
+  await requireAdmin();
   const year = String(formData.get("year") ?? "").trim();
   const title = String(formData.get("title") ?? "").trim();
   const description = String(formData.get("description") ?? "").trim();
@@ -34,7 +34,7 @@ export async function createMilestone(_prev: CrudState, formData: FormData): Pro
 }
 
 export async function updateMilestone(_prev: CrudState, formData: FormData): Promise<CrudState> {
-  await requireSession();
+  await requireAdmin();
   const id = String(formData.get("id") ?? "");
   if (!id) return { error: "Missing id." };
   const year = String(formData.get("year") ?? "").trim();
@@ -60,7 +60,7 @@ export async function updateMilestone(_prev: CrudState, formData: FormData): Pro
 }
 
 export async function deleteMilestone(formData: FormData): Promise<void> {
-  await requireSession();
+  await requireAdmin();
   const id = String(formData.get("id") ?? "");
   if (id) await db.delete(timelineMilestones).where(eq(timelineMilestones.id, id));
   refresh();

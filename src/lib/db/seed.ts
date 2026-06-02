@@ -5,7 +5,7 @@ loadEnv({ path: ".env.local" });
 import { eq } from "drizzle-orm";
 import { db } from "./index";
 import {
-  adminUsers,
+  users,
   collections,
   timelineMilestones,
   siteSettings,
@@ -24,9 +24,9 @@ async function seed() {
 
   // --- Admin user (create-only; never overwrite an existing password) ---
   const existing = await db
-    .select({ id: adminUsers.id })
-    .from(adminUsers)
-    .where(eq(adminUsers.email, email))
+    .select({ id: users.id })
+    .from(users)
+    .where(eq(users.email, email))
     .limit(1);
 
   if (existing.length === 0) {
@@ -35,10 +35,11 @@ async function seed() {
         "ADMIN_PASSWORD env is required to create the initial admin user.",
       );
     }
-    await db.insert(adminUsers).values({
+    await db.insert(users).values({
       email,
       passwordHash: await hashPassword(password),
       name: "Secundarian Admin",
+      role: "admin",
     });
     console.log(`✓ Created admin user: ${email}`);
   } else {

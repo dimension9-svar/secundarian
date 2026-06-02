@@ -21,8 +21,10 @@ import { useState } from "react";
 import Image from "next/image";
 
 const navLinks = [
+  { label: "Shop", href: "/shop" },
   { label: "Our Story", href: "#timeline" },
   { label: "Collections", href: "#collections" },
+  { label: "Account", href: "/account" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -107,6 +109,8 @@ export default function SecundarianNavbar() {
                 </Typography>
               ))}
               <Button
+                component="a"
+                href="/shop"
                 variant="contained"
                 size="small"
                 sx={{
@@ -171,7 +175,14 @@ export default function SecundarianNavbar() {
             </ListItem>
           ))}
           <ListItem sx={{ pt: 3 }}>
-            <Button variant="contained" fullWidth sx={{ py: 1.5 }}>
+            <Button
+              component="a"
+              href="/shop"
+              variant="contained"
+              fullWidth
+              sx={{ py: 1.5 }}
+              onClick={() => setDrawerOpen(false)}
+            >
               Shop Now
             </Button>
           </ListItem>

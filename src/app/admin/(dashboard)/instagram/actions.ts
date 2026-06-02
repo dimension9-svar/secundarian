@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { eq } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { instagramPosts } from "@/lib/db/schema";
-import { requireSession } from "@/lib/auth/guard";
+import { requireAdmin } from "@/lib/auth/guard";
 import { setSetting } from "@/lib/settings";
 
 export type CrudState = { ok?: boolean; error?: string };
@@ -15,7 +15,7 @@ function refresh() {
 }
 
 export async function createPost(_prev: CrudState, formData: FormData): Promise<CrudState> {
-  await requireSession();
+  await requireAdmin();
   const imageUrl = String(formData.get("imageUrl") ?? "").trim();
   if (!imageUrl) return { error: "Image URL is required." };
   const max = await db.$count(instagramPosts);
@@ -30,7 +30,7 @@ export async function createPost(_prev: CrudState, formData: FormData): Promise<
 }
 
 export async function updatePost(_prev: CrudState, formData: FormData): Promise<CrudState> {
-  await requireSession();
+  await requireAdmin();
   const id = String(formData.get("id") ?? "");
   if (!id) return { error: "Missing id." };
   await db
@@ -49,7 +49,7 @@ export async function updatePost(_prev: CrudState, formData: FormData): Promise<
 }
 
 export async function deletePost(formData: FormData): Promise<void> {
-  await requireSession();
+  await requireAdmin();
   const id = String(formData.get("id") ?? "");
   if (id) await db.delete(instagramPosts).where(eq(instagramPosts.id, id));
   refresh();
@@ -59,7 +59,7 @@ export async function saveInstagramConnection(
   _prev: CrudState,
   formData: FormData,
 ): Promise<CrudState> {
-  await requireSession();
+  await requireAdmin();
   const businessId = String(formData.get("businessId") ?? "").trim();
   const token = String(formData.get("graphToken") ?? "").trim();
   await setSetting("instagramBusinessId", businessId || null);

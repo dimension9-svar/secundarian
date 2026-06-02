@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { requireSession } from "@/lib/auth/guard";
+import { requireAdmin } from "@/lib/auth/guard";
 import { setSetting, getSetting } from "@/lib/settings";
 import { getCommerce } from "@/lib/commerce";
 import type { CommerceProviderId } from "@/lib/commerce";
@@ -14,7 +14,7 @@ export async function saveStoreSettings(
   _prev: StoreState,
   formData: FormData,
 ): Promise<StoreState> {
-  await requireSession();
+  await requireAdmin();
 
   const provider = String(formData.get("provider") ?? "none") as CommerceProviderId;
   if (!VALID.includes(provider)) return { error: "Unknown provider." };
@@ -35,13 +35,13 @@ export async function saveStoreSettings(
 }
 
 export async function testStoreConnection(): Promise<{ ok: boolean; message: string }> {
-  await requireSession();
+  await requireAdmin();
   const commerce = await getCommerce();
   return commerce.healthCheck();
 }
 
 export async function getStoreConfigSummary() {
-  await requireSession();
+  await requireAdmin();
   const [provider, storeUrl] = await Promise.all([
     getSetting("commerceProvider"),
     getSetting("commerceStoreUrl"),

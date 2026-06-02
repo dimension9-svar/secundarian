@@ -4,7 +4,7 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { eq } from "drizzle-orm";
 import { db } from "@/lib/db";
-import { adminUsers } from "@/lib/db/schema";
+import { users } from "@/lib/db/schema";
 import { verifyPassword } from "./password";
 import { createSession, destroySession, getSession } from "./session";
 
@@ -23,8 +23,8 @@ export async function loginAction(
 
   const rows = await db
     .select()
-    .from(adminUsers)
-    .where(eq(adminUsers.email, email))
+    .from(users)
+    .where(eq(users.email, email))
     .limit(1);
   const user = rows[0];
 
@@ -38,15 +38,20 @@ export async function loginAction(
     return { error: "Invalid email or password." };
   }
 
+  // The admin console is staff-only; customers authenticate at /account.
+  if (user.role !== "admin" && user.role !== "staff") {
+    return { error: "This account doesn't have admin access." };
+  }
+
   const hdrs = await headers();
   await createSession(user.id, {
     ip: hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? null,
     userAgent: hdrs.get("user-agent"),
   });
   await db
-    .update(adminUsers)
+    .update(users)
     .set({ lastLoginAt: new Date() })
-    .where(eq(adminUsers.id, user.id));
+    .where(eq(users.id, user.id));
 
   redirect("/admin");
 }

@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { requireSession } from "@/lib/auth/guard";
+import { requireAdmin } from "@/lib/auth/guard";
 import { setSetting } from "@/lib/settings";
 
 export type SaveState = { ok?: boolean; error?: string };
@@ -10,7 +10,7 @@ export async function saveGeneralSettings(
   _prev: SaveState,
   formData: FormData,
 ): Promise<SaveState> {
-  await requireSession();
+  await requireAdmin();
 
   const contactEmail = String(formData.get("contactEmail") ?? "").trim();
   const instagramHandle = String(formData.get("instagramHandle") ?? "")

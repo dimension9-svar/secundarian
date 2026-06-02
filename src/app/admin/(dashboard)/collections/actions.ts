@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { eq } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { collections } from "@/lib/db/schema";
-import { requireSession } from "@/lib/auth/guard";
+import { requireAdmin } from "@/lib/auth/guard";
 
 export type CrudState = { ok?: boolean; error?: string };
 
@@ -22,7 +22,7 @@ function refresh() {
 }
 
 export async function createCollection(_prev: CrudState, formData: FormData): Promise<CrudState> {
-  await requireSession();
+  await requireAdmin();
   const title = String(formData.get("title") ?? "").trim();
   if (!title) return { error: "Title is required." };
   const slug = slugify(String(formData.get("slug") ?? "") || title);
@@ -48,7 +48,7 @@ export async function createCollection(_prev: CrudState, formData: FormData): Pr
 }
 
 export async function updateCollection(_prev: CrudState, formData: FormData): Promise<CrudState> {
-  await requireSession();
+  await requireAdmin();
   const id = String(formData.get("id") ?? "");
   if (!id) return { error: "Missing id." };
   const title = String(formData.get("title") ?? "").trim();
@@ -73,7 +73,7 @@ export async function updateCollection(_prev: CrudState, formData: FormData): Pr
 }
 
 export async function deleteCollection(formData: FormData): Promise<void> {
-  await requireSession();
+  await requireAdmin();
   const id = String(formData.get("id") ?? "");
   if (id) await db.delete(collections).where(eq(collections.id, id));
   refresh();
