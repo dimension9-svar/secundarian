@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Box, Typography, Paper, Button, Chip } from "@mui/material";
 import { desc, eq, sql } from "drizzle-orm";
 import { db } from "@/lib/db";
@@ -29,7 +28,7 @@ export default async function ProductsPage() {
           <Typography variant="h4" sx={{ mb: 1 }}>Products</Typography>
           <Typography sx={{ color: "text.secondary" }}>Your sellable catalogue.</Typography>
         </Box>
-        <Button component={Link} href="/admin/products/new" variant="contained">New Product</Button>
+        <Button component="a" href="/admin/products/new" variant="contained">New Product</Button>
       </Box>
 
       {rows.length === 0 ? (
@@ -41,7 +40,7 @@ export default async function ProductsPage() {
           {rows.map((p) => (
             <Paper
               key={p.id}
-              component={Link}
+              component="a"
               href={`/admin/products/${p.id}`}
               elevation={0}
               sx={{

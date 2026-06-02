@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import { Box, Container, Typography, Button } from "@mui/material";
 import ShopHeader from "@/app/_components/ShopHeader";
 import { getProductBySlug } from "@/lib/shop";
@@ -33,7 +32,7 @@ export default async function ProductPage({
     <Box sx={{ bgcolor: "#FAFAF8", minHeight: "100svh" }}>
       <ShopHeader />
       <Container maxWidth="lg" sx={{ py: { xs: 4, md: 8 }, px: { xs: 3, md: 5 } }}>
-        <Button component={Link} href="/shop" sx={{ px: 0, mb: 3 }}>← Back to shop</Button>
+        <Button component="a" href="/shop" sx={{ px: 0, mb: 3 }}>← Back to shop</Button>
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap: { xs: 4, md: 8 } }}>
           <Box>
             <Box sx={{ aspectRatio: "3/4", bgcolor: "#1E1E1E", background: hero ? `url('${hero.url}') center/cover no-repeat` : "linear-gradient(165deg,#2C2C2C,#1A1A1A)" }} />

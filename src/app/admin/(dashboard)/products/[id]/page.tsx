@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Box, Typography, Button } from "@mui/material";
 import { asc, eq } from "drizzle-orm";
@@ -27,14 +26,14 @@ export default async function EditProductPage({
 
   return (
     <Box>
-      <Button component={Link} href="/admin/products" sx={{ px: 0, mb: 2 }}>
+      <Button component="a" href="/admin/products" sx={{ px: 0, mb: 2 }}>
         ← Back to products
       </Button>
       <Typography variant="h4" sx={{ mb: 0.5 }}>{product.title}</Typography>
       <Typography sx={{ color: "text.secondary", mb: 4 }}>
         Edit details, variants, and images.{" "}
         {product.status === "active" && (
-          <Typography component={Link} href={`/shop/${product.slug}`} sx={{ color: "secondary.main", textDecoration: "none" }}>
+          <Typography component="a" href={`/shop/${product.slug}`} sx={{ color: "secondary.main", textDecoration: "none" }}>
             View in shop →
           </Typography>
         )}

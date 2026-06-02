@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Box, Container, Typography, Button, Divider } from "@mui/material";
 import ShopHeader from "@/app/_components/ShopHeader";
 import { getCart } from "@/lib/cart";
@@ -21,7 +20,7 @@ export default async function CartPage() {
         {cart.lines.length === 0 ? (
           <Box>
             <Typography sx={{ color: "text.secondary", mb: 3 }}>Your bag is empty.</Typography>
-            <Button component={Link} href="/shop" variant="contained">Browse the shop</Button>
+            <Button component="a" href="/shop" variant="contained">Browse the shop</Button>
           </Box>
         ) : (
           <Box>
@@ -29,7 +28,7 @@ export default async function CartPage() {
               <Box key={line.itemId} sx={{ display: "flex", gap: 2.5, py: 3, borderTop: "1px solid rgba(0,0,0,0.08)" }}>
                 <Box sx={{ width: 88, height: 110, flexShrink: 0, bgcolor: "#1E1E1E", background: line.imageUrl ? `url('${line.imageUrl}') center/cover no-repeat` : "linear-gradient(165deg,#2C2C2C,#1A1A1A)" }} />
                 <Box sx={{ flex: 1 }}>
-                  <Typography component={Link} href={`/shop/${line.productSlug}`} sx={{ fontWeight: 500, color: "text.primary", textDecoration: "none" }}>
+                  <Typography component="a" href={`/shop/${line.productSlug}`} sx={{ fontWeight: 500, color: "text.primary", textDecoration: "none" }}>
                     {line.title}
                   </Typography>
                   {(line.size || line.colour) && (

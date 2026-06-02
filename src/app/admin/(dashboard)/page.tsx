@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Box, Typography, Paper } from "@mui/material";
 import { db } from "@/lib/db";
 import { collections, timelineMilestones, instagramPosts, subscribers } from "@/lib/db/schema";
@@ -41,7 +40,7 @@ export default async function AdminDashboard() {
         {cards.map((c) => (
           <Paper
             key={c.label}
-            component={Link}
+            component="a"
             href={c.href}
             elevation={0}
             sx={{

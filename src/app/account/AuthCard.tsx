@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
 import { Box, Container, Typography } from "@mui/material";
 
 export default function AuthCard({
@@ -16,7 +15,7 @@ export default function AuthCard({
       <Container maxWidth="xs">
         <Box sx={{ textAlign: "center", mb: 3 }}>
           <Typography
-            component={Link}
+            component="a"
             href="/"
             sx={{
               fontFamily: 'var(--font-bebas), "Bebas Neue", Impact, sans-serif',

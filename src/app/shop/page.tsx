@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import { Box, Container, Typography } from "@mui/material";
 import ShopHeader from "@/app/_components/ShopHeader";
@@ -29,7 +28,7 @@ export default async function ShopPage() {
         ) : (
           <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr 1fr", md: "repeat(3, 1fr)", lg: "repeat(4, 1fr)" }, gap: { xs: 2, md: 3 } }}>
             {productList.map((p) => (
-              <Box key={p.id} component={Link} href={`/shop/${p.slug}`} sx={{ textDecoration: "none", display: "block", "&:hover .shop-img": { transform: "scale(1.03)" } }}>
+              <Box key={p.id} component="a" href={`/shop/${p.slug}`} sx={{ textDecoration: "none", display: "block", "&:hover .shop-img": { transform: "scale(1.03)" } }}>
                 <Box sx={{ aspectRatio: "3/4", overflow: "hidden", bgcolor: "#1E1E1E", mb: 1.5, position: "relative" }}>
                   <Box
                     className="shop-img"
