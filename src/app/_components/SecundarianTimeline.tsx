@@ -27,36 +27,13 @@ const DISPLAY_BOLD_SX = {
   textShadow: "0 0 0.4px currentColor",
 } as const;
 
-const milestones = [
-  {
-    year: "2021",
-    title: "The Beginning",
-    subtitle: "Four Colours, One Hometown",
-    description:
-      "Like every great story, Secundarian started small. The journey began with a simple collection of T-shirts in a few colours — clean, authentic, and true to its roots.",
-  },
-  {
-    year: "2023",
-    title: "The Range Grows",
-    subtitle: "Winter Wear to Trucker Caps",
-    description:
-      "Followed by hoodies and sweaters for the colder seasons. Then came the trucker caps — an instant favourite that sold fast and gave the brand real momentum.",
-  },
-  {
-    year: "2025",
-    title: "The Cape Town Pivot",
-    subtitle: "A Conversation That Changed Everything",
-    description:
-      "During a conversation with friends in the Mother City, one suggestion changed the direction of Secundarian: “Why not take it into workwear — but make it fashion meets workwear, not PPE?” Then came the shift.",
-  },
-  {
-    year: "2026",
-    title: "The Relaunch",
-    subtitle: "Same Name, New Identity",
-    description:
-      "Secundarian re-emerges with a new logo — inspired by the cooling towers that define Secunda's skyline — and a redefined mission: fashion-forward workwear rooted in hometown pride. Everything else levels up.",
-  },
-];
+export type Milestone = {
+  id: string;
+  year: string;
+  title: string;
+  subtitle: string | null;
+  description: string;
+};
 
 function TimelineMilestone({
   milestone,
@@ -64,7 +41,7 @@ function TimelineMilestone({
   isLast,
   onReveal,
 }: {
-  milestone: (typeof milestones)[0];
+  milestone: Milestone;
   index: number;
   isLast: boolean;
   onReveal: (index: number) => void;
@@ -190,7 +167,11 @@ function TimelineMilestone({
   );
 }
 
-export default function SecundarianTimeline() {
+export default function SecundarianTimeline({
+  milestones,
+}: {
+  milestones: Milestone[];
+}) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [revealed, setRevealed] = useState<Set<number>>(() => new Set());
@@ -254,7 +235,7 @@ export default function SecundarianTimeline() {
         >
           {milestones.map((milestone, i) => (
             <TimelineMilestone
-              key={milestone.title}
+              key={milestone.id}
               milestone={milestone}
               index={i}
               isLast={i === milestones.length - 1}

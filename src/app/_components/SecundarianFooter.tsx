@@ -17,7 +17,11 @@ const footerLinks = {
   Legal: ["Privacy Policy", "Terms of Service", "Cookie Policy"],
 };
 
-export default function SecundarianFooter() {
+export default function SecundarianFooter({
+  contactEmail = "info@secundarian.co.za",
+}: {
+  contactEmail?: string;
+}) {
   return (
     <Box
       component="footer"
@@ -128,9 +132,7 @@ export default function SecundarianFooter() {
                     <Typography
                       component="a"
                       href={
-                        link === "Contact"
-                          ? "mailto:info@secundarian.co.za"
-                          : "#"
+                        link === "Contact" ? `mailto:${contactEmail}` : "#"
                       }
                       sx={{
                         color: "rgba(255,255,255,0.5)",

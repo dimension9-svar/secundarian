@@ -7,30 +7,22 @@ import {
   TextField,
   Button,
   InputAdornment,
+  Alert,
 } from "@mui/material";
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useActionState } from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { subscribeAction, type SubscribeState } from "./subscribe-action";
 
 const MotionBox = motion.create(Box);
-
-const CONTACT_EMAIL = "info@secundarian.co.za";
 
 export default function SecundarianCTA() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-  const [email, setEmail] = useState("");
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const trimmed = email.trim();
-    if (!trimmed) return;
-    const subject = encodeURIComponent("Secundarian — early access request");
-    const body = encodeURIComponent(
-      `Please add me to the Secundarian workshop list for early access to new collections.\n\nEmail: ${trimmed}`
-    );
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-  };
+  const [state, formAction, pending] = useActionState<SubscribeState, FormData>(
+    subscribeAction,
+    {},
+  );
 
   return (
     <Box
@@ -98,9 +90,25 @@ export default function SecundarianCTA() {
             who wear Secundarian every day.
           </Typography>
 
+          {state.ok ? (
+            <Alert
+              severity="success"
+              sx={{
+                borderRadius: 0,
+                maxWidth: 520,
+                mx: "auto",
+                bgcolor: "rgba(196,162,101,0.12)",
+                color: "rgba(255,255,255,0.92)",
+                border: "1px solid rgba(196,162,101,0.35)",
+                "& .MuiAlert-icon": { color: "#C4A265" },
+              }}
+            >
+              You&rsquo;re on the list — welcome to the workshop.
+            </Alert>
+          ) : (
           <Box
             component="form"
-            onSubmit={handleSubmit}
+            action={formAction}
             sx={{
               display: "flex",
               flexDirection: { xs: "column", sm: "row" },
@@ -115,8 +123,6 @@ export default function SecundarianCTA() {
               type="email"
               name="email"
               autoComplete="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
               placeholder="Your email address"
               variant="outlined"
               sx={{
@@ -155,6 +161,7 @@ export default function SecundarianCTA() {
                       <Button
                         type="submit"
                         variant="contained"
+                        disabled={pending}
                         sx={{
                           minWidth: "auto",
                           px: 2,
@@ -172,14 +179,25 @@ export default function SecundarianCTA() {
             <Button
               type="submit"
               variant="contained"
+              disabled={pending}
               sx={{
                 display: { xs: "flex", sm: "none" },
                 py: 1.75,
               }}
             >
-              Subscribe
+              {pending ? "Subscribing…" : "Subscribe"}
             </Button>
           </Box>
+          )}
+
+          {state.error && (
+            <Alert
+              severity="error"
+              sx={{ borderRadius: 0, maxWidth: 520, mx: "auto", mt: 2 }}
+            >
+              {state.error}
+            </Alert>
+          )}
 
           <Typography
             variant="body2"

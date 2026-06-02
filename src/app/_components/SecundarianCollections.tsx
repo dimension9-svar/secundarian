@@ -14,36 +14,25 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const MotionBox = motion.create(Box);
 
-const collections = [
-  {
-    title: "Foundation",
-    subtitle: "Oversized Tee",
-    color: "#2C2C2C",
-    accent: "#8B7355",
-  },
-  {
-    title: "Forge",
-    subtitle: "Shirts",
-    color: "#1A1612",
-    accent: "#C4A265",
-  },
-  {
-    title: "Meridian",
-    subtitle: "Cargo Pants",
-    color: "#2A2520",
-    accent: "#A69378",
-  },
-  {
-    title: "Sable",
-    subtitle: "Beanies",
-    color: "#1E1E1E",
-    accent: "#9B8B7A",
-  },
-];
+export type CollectionItem = {
+  id: string;
+  title: string;
+  subtitle: string | null;
+  color: string;
+  accent: string;
+  imageUrl: string | null;
+  productUrl: string | null;
+};
 
-export default function SecundarianCollections() {
+export default function SecundarianCollections({
+  collections,
+}: {
+  collections: CollectionItem[];
+}) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  if (collections.length === 0) return null;
 
   return (
     <Box
@@ -114,17 +103,22 @@ export default function SecundarianCollections() {
         >
           {collections.map((collection, i) => (
             <MotionBox
-              key={collection.title}
+              key={collection.id}
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.15 }}
             >
               <Card
+                {...(collection.productUrl
+                  ? { component: "a", href: collection.productUrl }
+                  : {})}
                 sx={{
                   height: "100%",
                   border: "none",
                   cursor: "pointer",
                   bgcolor: "transparent",
+                  textDecoration: "none",
+                  display: "block",
                   transition: "transform 0.3s ease",
                   "&:hover": {
                     transform: "translateY(-4px)",
@@ -137,7 +131,9 @@ export default function SecundarianCollections() {
                 <Box
                   sx={{
                     aspectRatio: "3/4",
-                    background: `linear-gradient(165deg, ${collection.color} 0%, ${collection.color}ee 100%)`,
+                    background: collection.imageUrl
+                      ? `url('${collection.imageUrl}') center/cover no-repeat`
+                      : `linear-gradient(165deg, ${collection.color} 0%, ${collection.color}ee 100%)`,
                     position: "relative",
                     overflow: "hidden",
                     transition: "transform 0.5s ease",

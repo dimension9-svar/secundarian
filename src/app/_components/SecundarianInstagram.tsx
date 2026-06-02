@@ -6,36 +6,35 @@ import { useRef } from "react";
 
 const MotionBox = motion.create(Box);
 
-const feedItems = [
-  {
-    gradient: "linear-gradient(135deg, #2C2C2C 0%, #1A1A1A 100%)",
-    label: "Foundation jacket — field tested, 72 hours straight",
-  },
-  {
-    gradient: "linear-gradient(135deg, #3D3228 0%, #1E1612 100%)",
-    label: "Forge line — heat-rated to 400°C",
-  },
-  {
-    gradient: "linear-gradient(135deg, #2A2520 0%, #0D0D0D 100%)",
-    label: "Material Lab — 14-point fabric evaluation",
-  },
-  {
-    gradient: "linear-gradient(135deg, #1E1E1E 0%, #2C2C2C 100%)",
-    label: "Workshop floor — triple-stitch in progress",
-  },
-  {
-    gradient: "linear-gradient(165deg, #2C2824 0%, #1A1612 100%)",
-    label: "Meridian outerwear — dawn test, Cape Town harbour",
-  },
-  {
-    gradient: "linear-gradient(135deg, #1A1A1A 0%, #3D3D3D 100%)",
-    label: "Sable evening line — site to street",
-  },
+// Tile background gradients cycle for tiles without an image, so the grid keeps
+// the brand texture even before photography is dropped in.
+const FALLBACK_GRADIENTS = [
+  "linear-gradient(135deg, #2C2C2C 0%, #1A1A1A 100%)",
+  "linear-gradient(135deg, #3D3228 0%, #1E1612 100%)",
+  "linear-gradient(135deg, #2A2520 0%, #0D0D0D 100%)",
+  "linear-gradient(135deg, #1E1E1E 0%, #2C2C2C 100%)",
+  "linear-gradient(165deg, #2C2824 0%, #1A1612 100%)",
+  "linear-gradient(135deg, #1A1A1A 0%, #3D3D3D 100%)",
 ];
 
-export default function SecundarianInstagram() {
+export type InstagramTile = {
+  id: string;
+  imageUrl: string | null;
+  caption: string | null;
+  permalink: string | null;
+};
+
+export default function SecundarianInstagram({
+  posts,
+  handle,
+}: {
+  posts: InstagramTile[];
+  handle: string;
+}) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
+
+  if (posts.length === 0) return null;
 
   return (
     <Box
@@ -61,7 +60,7 @@ export default function SecundarianInstagram() {
               variant="overline"
               sx={{ color: "secondary.main", mb: 1, display: "block" }}
             >
-              @secundarian
+              @{handle}
             </Typography>
             <Typography
               variant="h3"
@@ -72,7 +71,7 @@ export default function SecundarianInstagram() {
           </Box>
           <IconButton
             component="a"
-            href="https://instagram.com"
+            href={`https://instagram.com/${handle}`}
             target="_blank"
             rel="noopener noreferrer"
             sx={{
@@ -107,15 +106,26 @@ export default function SecundarianInstagram() {
             gap: { xs: 1, md: 1.5 },
           }}
         >
-          {feedItems.map((item, i) => (
+          {posts.map((item, i) => (
             <MotionBox
-              key={item.label}
+              key={item.id}
+              {...(item.permalink
+                ? {
+                    component: "a",
+                    href: item.permalink,
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                  }
+                : {})}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: i * 0.08 }}
               sx={{
                 aspectRatio: "1",
-                background: item.gradient,
+                display: "block",
+                background: item.imageUrl
+                  ? `url('${item.imageUrl}') center/cover no-repeat`
+                  : FALLBACK_GRADIENTS[i % FALLBACK_GRADIENTS.length],
                 position: "relative",
                 overflow: "hidden",
                 cursor: "pointer",
@@ -142,30 +152,32 @@ export default function SecundarianInstagram() {
               />
 
               {/* Hover overlay with caption */}
-              <Box
-                className="ig-overlay"
-                sx={{
-                  position: "absolute",
-                  inset: 0,
-                  bgcolor: "rgba(26,26,26,0.7)",
-                  display: "flex",
-                  alignItems: "flex-end",
-                  p: 2,
-                  opacity: 0,
-                  transition: "opacity 0.3s ease",
-                }}
-              >
-                <Typography
+              {item.caption && (
+                <Box
+                  className="ig-overlay"
                   sx={{
-                    color: "rgba(255,255,255,0.85)",
-                    fontSize: "0.75rem",
-                    lineHeight: 1.5,
-                    letterSpacing: "0.02em",
+                    position: "absolute",
+                    inset: 0,
+                    bgcolor: "rgba(26,26,26,0.7)",
+                    display: "flex",
+                    alignItems: "flex-end",
+                    p: 2,
+                    opacity: 0,
+                    transition: "opacity 0.3s ease",
                   }}
                 >
-                  {item.label}
-                </Typography>
-              </Box>
+                  <Typography
+                    sx={{
+                      color: "rgba(255,255,255,0.85)",
+                      fontSize: "0.75rem",
+                      lineHeight: 1.5,
+                      letterSpacing: "0.02em",
+                    }}
+                  >
+                    {item.caption}
+                  </Typography>
+                </Box>
+              )}
 
               {/* Corner accent */}
               <Box
