@@ -73,7 +73,7 @@ export default function SecundarianAbout() {
             >
               That constant reminder of home stuck. It became more than just an
               introduction — it became an identity. As a creative with a
-              long-standing dream of building something of his own, he turned
+              long-standing dream of building a clothing brand, he turned
               that identity into inspiration. And from that, Secundarian was
               born.
             </MotionTypography>
